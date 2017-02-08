@@ -4,7 +4,7 @@
 Steve @ BrownBiguity Inc.
 
 ## Squids
-Nick Chemsak, Alex Simonian, Matthew McCord, Dani Adkins, Richard Whitfield
+Nick Chemsak, Alex Simonian, Matthew McCord, Ali Kimbrell, Richard Whitfield
 
 ## Commitment
 The Ambiguous-Squids will provide the client, henceforth known as Steve, access to the Bangazon Command Line interface tool, by Wednesday, February 14, 2017, where they can: 
