@@ -9,7 +9,8 @@ CREATE TABLE Customers
 	state			VARCHAR(45)		NOT NULL,
 	zip				VARCHAR(45)		NOT NULL,
 	phone_number	VARCHAR(45)			NULL,
-	email			VARCHAR(45)		NOT NULL UNIQUE,
+	email			VARCHAR(45)		NOT NULL,
+	CONSTRAINT email_unique UNIQUE (email)	,
 	PRIMARY KEY (idCustomer)
 )
 
@@ -41,6 +42,7 @@ CREATE TABLE Products
 	idProduct		INTEGER			NOT NULL,
 	name 			VARCHAR(45)		NOT NULL,
 	price			DECIMAL(8, 2)	NOT NULL,
+	quantity		INTEGER			NOT NULL,
 	PRIMARY KEY (idProduct)
 )
 
