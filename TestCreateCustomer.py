@@ -1,12 +1,6 @@
 import unittest
-<<<<<<< HEAD
-from .customer import Customer
-from .superuser import Superuser
-=======
 from customer import Customer
 from superuser import Superuser
->>>>>>> 81c8c774b4902b61c32570acfc81ce7e674c6237
-
 
 class TestCreateCustomer(unittest.TestCase):
 
