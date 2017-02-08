@@ -9,6 +9,7 @@ CREATE TABLE Customers
 	state			VARCHAR(45)		NOT NULL,
 	zip				VARCHAR(45)		NOT NULL,
 	phone_number	VARCHAR(45)			NULL,
+	email			VARCHAR(45)		NOT NULL UNIQUE,
 	PRIMARY KEY (idCustomer)
 )
 
@@ -45,11 +46,10 @@ CREATE TABLE Products
 
 CREATE TABLE OrderItems
 (
+	idOrderItem		INTEGER			NOT NULL,
 	idOrder			INTEGER			NOT NULL,
-	order_item		INTEGER			NOT NULL,
-	quantity		INTEGER			NOT NULL,
 	idProduct		INTEGER			NOT NULL,
-	PRIMARY KEY (idOrder, order_item)		,
+	PRIMARY KEY (idOrderItem)				,
 	FOREIGN KEY (idOrder) REFERENCES Orders (idOrder),
 	FOREIGN KEY (idProduct) REFERENCES Products (idProduct)
 )
