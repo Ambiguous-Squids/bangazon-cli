@@ -16,6 +16,7 @@ class TestChooseActiveCustomer(unittest.TestCase):
 	def test_superuser_can_choose_active_customer(self):
 		
 		self.superuser.activate_customer(self.albert)
+		self.assertTrue(self.superuser.user_is_active(self.albert))
 
 if __name__ == '__main__':
 	unittest.main()
