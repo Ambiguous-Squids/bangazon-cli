@@ -10,8 +10,8 @@ INSERT INTO Payments VALUES (null, 'Dude', 'Jam', '88881234', '2000-11-15', 123,
 
 INSERT INTO Orders VALUES (null, 'True', 1);
 INSERT INTO Orders VALUES (null, 'True', 2);
-INSERT INTO Orders VALUES (null, 'True', 3);
-INSERT INTO Orders VALUES (null, 'True', 4);
+INSERT INTO Orders VALUES (null, 'False', 3);
+INSERT INTO Orders VALUES (null, 'False', 4);
 
 INSERT INTO Products VALUES (null, 'Legend of Zelda', 49.99, 100);
 INSERT INTO Products VALUES (null, 'Hula Hoop', 19.99, 200);
