@@ -1,3 +1,6 @@
+'''
+This module defines the class to test Completing an Order
+'''
 import sys
 sys.path.append('../')
 
@@ -13,12 +16,29 @@ class TestCompleteAnOrder(unittest.TestCase):
     '''
 
     @classmethod
-    def setUpClass(self):
-        self.customer = Customer("Nick", "Chemsak", "111 Street Rd", "suite 3", "Nashville", "TN", "37075", "123-123-0987", "test@test.com")
-        self.order = Order("Nick", "Basketball", True, 1)
-        self.product = Product("Basketball", 5.00)
-        self.payment_option = PaymentOption("Nick", "Chemsak", "1234567891234567", "2017-05-05", "123", "VISA")
-        self.order2 = Order("Nick", "", True, 1)
+    def setUpClass(cls):
+        cls.customer = Customer(
+            "Nick",
+            "Chemsak",
+            "111 Street Rd",
+            "suite 3",
+            "Nashville",
+            "TN",
+            "37075",
+            "123-123-0987",
+            "test@test.com"
+            )
+        cls.order = Order("Nick", "Basketball", True, 1)
+        cls.product = Product("Basketball", 5.00)
+        cls.payment_option = PaymentOption(
+            "Nick",
+            "Chemsak",
+            "1234567891234567",
+            "2017-05-05",
+            "123",
+            "VISA"
+            )
+        cls.order2 = Order("Nick", "", True, 1)
 
 
     def test_there_is_a_customer(self):
