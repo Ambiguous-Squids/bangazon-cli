@@ -2,6 +2,21 @@ import sqlite3
 
 class Customer():
 
+	'''
+		This class handles the creation of a Customer
+
+		Methods:
+			__init__(self, first_name, last_name, address_1,
+							address_2, city, state, zip, phone_number, email)
+			user_is_active(self,user)
+			activate_customer(self,user)
+			deactivate_customer(self,user)
+
+		Author:
+			@rtwhitfield84
+
+	'''
+
 	def __init__(self, first_name, last_name, address_1,
 				address_2, city, state, zip, phone_number, email):
 
