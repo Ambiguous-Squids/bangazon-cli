@@ -3,7 +3,8 @@ import sqlite3
 class Customer():
 
 	'''
-		This class handles the creation of a Customer
+		Purpose:
+			This class handles the creation of a Customer
 
 		Methods:
 			__init__(self, first_name, last_name, address_1,

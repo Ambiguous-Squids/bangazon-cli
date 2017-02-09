@@ -5,7 +5,8 @@ from superuser import Superuser
 class TestChooseActiveCustomer(unittest.TestCase):
 
 	'''
-		This class tests that a user can be chosen as active
+		Purpose:
+			This class tests that a user can be chosen as active
 
 		Methods:
 			@classmethod

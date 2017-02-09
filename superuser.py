@@ -3,7 +3,8 @@ import sqlite3
 class Superuser():
 
     '''
-        This class handles the superusers actions
+        Purpose:
+            This class handles the superusers actions
 
         Methods:
             register_user(self,user)
