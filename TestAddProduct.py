@@ -5,6 +5,22 @@ from product import *
 
 class TestAddProduct(unittest.TestCase):
 
+    """
+    Purpose:
+        This class tests that a user can add a product to an order on behalf of the active customer.
+
+    Methods:
+        setUp(self)
+        tearDown(self)
+        test_OrderIsActive(self)
+        test_OrderBelongsToActiveCustomer(self)
+        test_OrderIncludesProductAdded(self)
+        test_PriceOfProductAddedIsAddedToOrderTotal(self)
+
+    Author:
+        @alirk
+    """
+
     @classmethod
     def setUp(self):
         self.bob = Customer("Albert", "Einstein","123 Atom Way",

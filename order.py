@@ -1,4 +1,21 @@
+"""This module defines the class for Order creation"""
+
 class Order():
+    """
+    Purpose:
+        This class handles creation of a new Order.
+
+    Methods:
+        __init__(self, customer)
+        get_customer(self)
+        add_product(self, product)
+        get_products(self)
+        set_status(self, status)
+        get_total(self)
+
+    Author:
+        @alirk
+    """
 
     def __init__(self, customer):
         self.customer = customer
