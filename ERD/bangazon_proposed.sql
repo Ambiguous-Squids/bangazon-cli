@@ -31,7 +31,7 @@ CREATE TABLE Payments
 CREATE TABLE Orders
 (
 	idOrder			INTEGER			NOT NULL,
-	active			BOOLEAN			default 'True'		NOT NULL,
+	active			BOOLEAN			NULL,
 	idCustomer 		INTEGER			NOT NULL,
 	PRIMARY KEY (idOrder)					,
 	FOREIGN KEY (idCustomer) REFERENCES Customers (idCustomer)
