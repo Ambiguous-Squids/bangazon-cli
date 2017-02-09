@@ -1,7 +1,11 @@
+import sys
+sys.path.append('../')
+
 import unittest
 from customer import *
 from order import *
 from product import *
+
 
 class TestAddProduct(unittest.TestCase):
 

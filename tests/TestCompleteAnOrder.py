@@ -1,3 +1,6 @@
+import sys
+sys.path.append('../')
+
 import unittest
 from customer import Customer
 from payment_option import PaymentOption
@@ -11,7 +14,6 @@ class TestCompleteAnOrder(unittest.TestCase):
 
     @classmethod
     def setUpClass(self):
-        print('set up class')
         self.customer = Customer("Nick", "Chemsak", "111 Street Rd", "suite 3", "Nashville", "TN", "37075", "123-123-0987", "test@test.com")
         self.order = Order("Nick", "Basketball", True, 1)
         self.product = Product("Basketball", 5.00)
@@ -44,5 +46,3 @@ class TestCompleteAnOrder(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-

@@ -1,6 +1,8 @@
 '''
 This module defines the class to test Payment Option creation.
 '''
+import sys
+sys.path.append('../')
 
 import unittest
 from payment_option import PaymentOption
