@@ -11,6 +11,7 @@ class Order():
 
     def add_product(self, product):
         self.products.append(product)
+        self.total = self.total + product.price
 
     def get_products(self):
         return self.products
