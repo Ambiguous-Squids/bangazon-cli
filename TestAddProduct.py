@@ -32,17 +32,17 @@ class TestAddProduct(unittest.TestCase):
     def tearDown(self):
         self.active_order.total = 0
 
-    def test_OrderIsActive(self):
+    def test_order_is_active(self):
         self.assertTrue(self.active_order.active)
 
-    def test_OrderBelongsToActiveCustomer(self):
+    def test_order_belongs_to_active_customer(self):
         self.assertIs(self.bob, self.active_order.get_customer())
 
-    def test_OrderIncludesProductAdded(self):
+    def test_order_includes_product_added(self):
         self.active_order.add_product(self.new_product)
         self.assertIn(self.new_product, self.active_order.products)
 
-    def test_PriceOfProductAddedIsAddedToOrderTotal(self):
+    def test_price_of_product_added_is_added_to_order_total(self):
         self.active_order.add_product(self.new_product)
         self.assertEqual(self.new_product.price, self.active_order.get_total())
                             
