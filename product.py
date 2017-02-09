@@ -9,11 +9,21 @@ class Product():
     
     Methods:
         __init__(self)
+        get_popularity(self)
+        set_popularity(self, product_id, quantity)
 
     Author:
-        alirk
+        @alirk, @asimonia
     """
     
     def __init__(self, name, price):
-        self.name = name
-        self.price = price
+        self.__name = name
+        self.__price = price
+        self.__popularity = [(1, 100)]
+
+    def get_popularity(self):
+        return self.__popularity
+
+    def set_popularity(self, product_id, quantity):
+        pass
+
