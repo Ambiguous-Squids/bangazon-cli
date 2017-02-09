@@ -27,7 +27,8 @@ class TestAddProduct(unittest.TestCase):
                             "Apt. B2", "Nashville", "TN",
                             "32233", "615-555-555", "bigal@al.com")
         self.new_product = Product('yoyo', 5)
-        self.active_order = Order(self.bob)
+        self.active_order = Order(self.bob, "basketball", True, 1)
+
 
     @classmethod
     def tearDown(self):
@@ -46,7 +47,7 @@ class TestAddProduct(unittest.TestCase):
     def test_price_of_product_added_is_added_to_order_total(self):
         self.active_order.add_product(self.new_product)
         self.assertEqual(self.new_product.price, self.active_order.get_total())
-                            
+
 
 if __name__ == '__main__':
     unittest.main()
