@@ -7,6 +7,19 @@ from superuser import Superuser
 
 class TestCreateCustomer(unittest.TestCase):
 
+	'''
+	    Purpose:
+	        This class tests that a user/customer can be created
+
+	    Methods:
+	        @classmethod
+	        def setUpClass(self)
+	        def test_superuser_can_create_customer_account(self):
+
+	    Author:
+	        @rtwhitfield84
+	'''
+
 	@classmethod
 	def setUpClass(self):
 		self.albert = Customer("Albert", "Einstein","123 Atom Way",
