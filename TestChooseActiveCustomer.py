@@ -4,6 +4,19 @@ from superuser import Superuser
 
 class TestChooseActiveCustomer(unittest.TestCase):
 
+	'''
+		Purpose:
+			This class tests that a user can be chosen as active
+
+		Methods:
+			@classmethod
+			def setUpClass(self)
+			def test_superuser_can_choose_active_customer(self):
+
+		Author:
+			@rtwhitfield84
+	'''
+
 	@classmethod
 	def setUpClass(self):
 		self.albert = Customer("Albert", "Einstein","123 Atom Way",
