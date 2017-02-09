@@ -29,6 +29,7 @@ class TestAddProduct(unittest.TestCase):
         self.new_product = Product('yoyo', 5)
         self.active_order = Order(self.bob)
 
+    @classmethod
     def tearDown(self):
         self.active_order.total = 0
 
