@@ -2,7 +2,6 @@ import unittest
 from customer import Customer
 from superuser import Superuser
 
-
 class TestCreateCustomer(unittest.TestCase):
 
 	@classmethod
