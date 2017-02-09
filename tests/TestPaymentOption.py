@@ -10,7 +10,7 @@ from payment_option import PaymentOption
 
 class TestCreatePaymentOption(unittest.TestCase):
     '''
-    Purose:
+    Purpose:
         This Class Tests that one can successfully create a Payment Option.
 
     Methods:
