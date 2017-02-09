@@ -17,7 +17,7 @@ class Order():
         @alirk
     """
 
-    def __init__(self, customer):
+    def __init__(self, customer, products, active, total):
         self.customer = customer
         self.products = []
         self.active = True
@@ -30,7 +30,7 @@ class Order():
         self.products.append(product)
         self.total = self.total + product.price
 
-    def get_products(self):
+    def get_products(self, products):
         return self.products
 
     def set_status(self, status):
@@ -41,4 +41,6 @@ class Order():
 
     def get_total(self):
         return self.total
-    
+
+    def add_payment_option(self):
+        return True

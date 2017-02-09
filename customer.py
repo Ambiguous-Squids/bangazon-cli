@@ -16,3 +16,11 @@ class Customer():
 		self.email = email
 
 
+	def user_is_active(self,user):
+		return True
+
+	def activate_customer(self,user):
+		pass
+
+	def deactivate_customer(self,user):
+		return False
