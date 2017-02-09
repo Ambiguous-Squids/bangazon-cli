@@ -17,12 +17,12 @@ class Product():
     """
     
     def __init__(self, name, price):
-        self.__name = name
-        self.__price = price
-        self.__popularity = [(1, 100)]
+        self.name = name
+        self.price = price
+        self.popularity = [(1, 100)]
 
     def get_popularity(self):
-        return self.__popularity
+        return self.popularity
 
     def set_popularity(self, product_id, quantity):
         pass
