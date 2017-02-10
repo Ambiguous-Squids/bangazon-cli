@@ -2,13 +2,12 @@
 This module defines the class to test Payment Option creation.
 '''
 import sys
-sys.path.append('../')
-
 import unittest
+sys.path.append('../')
 from payment_option import PaymentOption
 
 
-class TestCreatePaymentOption(unittest.TestCase):
+class TestPaymentOption(unittest.TestCase):
     '''
     Purpose:
         This Class Tests that one can successfully create a Payment Option.
@@ -42,6 +41,11 @@ class TestCreatePaymentOption(unittest.TestCase):
     def test_can_create_payment_option(self):
         '''test that payment option created in setUpClass is an instance of PaymentOption'''
         self.assertIsInstance(self.payment_option, PaymentOption)
+
+    def test_payment_option_saved_to_db(self):
+        '''test that the payment option created was saved to the database'''
+        self.payment_option.save_to_db()
+        self.assertTrue(self.payment_option.check_if_acct_exists())
 
     def test_created_first_name(self):
         '''test that payment option created in setUpClass has a valid first name'''
