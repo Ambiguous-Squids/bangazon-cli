@@ -7,7 +7,7 @@ import os
 class PaymentOption:
     '''
     Purpose:
-        This Class handles creation of a Payment Optionk.
+        This Class handles creation of a Payment Option.
 
     Methods:
         __init__(self, first_name, last_name, acct_number, exp_date, ccv, category)
