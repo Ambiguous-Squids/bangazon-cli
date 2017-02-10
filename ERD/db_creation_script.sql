@@ -12,7 +12,7 @@ CREATE TABLE Customers
 	email			VARCHAR(45)		NOT NULL,
 	CONSTRAINT email_unique UNIQUE (email)	,
 	PRIMARY KEY (idCustomer)
-)
+);
 
 CREATE TABLE Payments
 (
@@ -26,7 +26,7 @@ CREATE TABLE Payments
 	idCustomer		INTEGER			NOT NULL,
 	PRIMARY KEY (idPayment)					,
 	FOREIGN KEY (idCustomer) REFERENCES Customers (idCustomer)
-)
+);
 
 CREATE TABLE Orders
 (
@@ -35,7 +35,7 @@ CREATE TABLE Orders
 	idCustomer 		INTEGER			NOT NULL,
 	PRIMARY KEY (idOrder)					,
 	FOREIGN KEY (idCustomer) REFERENCES Customers (idCustomer)
-)
+);
 
 CREATE TABLE Products
 (
@@ -44,7 +44,7 @@ CREATE TABLE Products
 	price			DECIMAL(8, 2)	NOT NULL,
 	quantity		INTEGER			NOT NULL,
 	PRIMARY KEY (idProduct)
-)
+);
 
 CREATE TABLE OrderItems
 (
@@ -54,5 +54,5 @@ CREATE TABLE OrderItems
 	PRIMARY KEY (idOrderItem)				,
 	FOREIGN KEY (idOrder) REFERENCES Orders (idOrder),
 	FOREIGN KEY (idProduct) REFERENCES Products (idProduct)
-)
+);
 
