@@ -9,9 +9,9 @@ class Customer():
 		Methods:
 			__init__(self, first_name, last_name, address_1,
 							address_2, city, state, zip, phone_number, email)
-			user_is_active(self,user)
-			activate_customer(self,user)
-			deactivate_customer(self,user)
+			user_is_active(self,customer)
+			activate_customer(self,customer)
+			deactivate_customer(self,customer)
 
 		Author:
 			@rtwhitfield84
@@ -53,7 +53,7 @@ class Customer():
 		return str(self.state)
 
 	def get_zip(self):
-		return str(self.state)
+		return str(self.zip)
 
 	def get_phone_number(self):
 		return str(self.phone_number)
@@ -61,33 +61,47 @@ class Customer():
 	def get_email(self):
 	    return str(self.email)
 
-	def user_is_active(self,user):
+	def user_is_active(self,customer):
 		return True
 
-	def activate_customer(self,user):
+	def activate_customer(self,customer):
 		pass
 
-	def deactivate_customer(self,user):
+	def deactivate_customer(self,customer):
 		return False
 
 
-	def register_user_in_db(self,user):
+	def register_customer_in_db(self,customer):
 
-		with sqlite3.connect("bangazon.db") as b:
+		with sqlite3.connect("../bangazon.db") as b:
 		            cursor = b.cursor()
 
 		            cursor.execute("""
-		            INSERT INTO Customer VALUES (null, '{}', '{}', '{}', '{}')
+		            INSERT OR IGNORE INTO Customers VALUES (null, '{}', '{}', '{}', '{}',
+		            							'{}', '{}', '{}', '{}', '{}')
 		            """.format(
-		                        get_first_name(), 
-		                        get_last_name(), 
-		                        get_address_1(), 
-		                        get_address_2(), 
-		                        get_city(), 
-		                        get_state(), 
-		                        get_zip(), 
-		                        get_phone_number(), 
-		                        get_email()))
+		                        customer.get_first_name(), 
+		                        customer.get_last_name(), 
+		                        customer.get_address_1(), 
+		                        customer.get_address_2(), 
+		                        customer.get_city(), 
+		                        customer.get_state(), 
+		                        customer.get_zip(), 
+		                        customer.get_phone_number(), 
+		                        customer.get_email()))
 
 
+	def customer_is_registered(self,customer):
+		with sqlite3.connect("../bangazon.db") as b:
+		    cursor = b.cursor()
 
+		    try:
+		        cursor.execute("""
+		            SELECT * FROM Customers 
+		            WHERE email='{}'
+		        """.format(customer.get_email()))
+		    except sqlite3.OperationalError:
+		        return False
+
+		    customer = cursor.fetchall()
+		    return len(customer) == 1

@@ -9,7 +9,7 @@ class TestCreateCustomer(unittest.TestCase):
 
 	'''
 	    Purpose:
-	        This class tests that a user/customer can be created
+	        This class tests that a customer can be created
 
 	    Methods:
 	        @classmethod
@@ -32,10 +32,10 @@ class TestCreateCustomer(unittest.TestCase):
 	def test_superuser_can_create_customer_account(self):
 
 		self.assertIsInstance(self.albert, Customer)
-		self.register_user_in_db(self.albert)
+		self.albert.register_customer_in_db(self.albert)
 
 		# self.superuser.register_user(self.albert)
-		# self.assertTrue(self.superuser.user_is_registered(self.albert))
+		self.assertTrue(self.albert.customer_is_registered(self.albert))
 
 
 if __name__ == '__main__':
