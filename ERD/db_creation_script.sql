@@ -1,3 +1,15 @@
+DELETE FROM OrderItems;
+DELETE FROM Products;
+DELETE FROM Orders;
+DELETE FROM Payments;
+DELETE FROM Customers;
+
+DROP TABLE IF EXISTS OrderItems;
+DROP TABLE IF EXISTS Products;
+DROP TABLE IF EXISTS Orders;
+DROP TABLE IF EXISTS Payments;
+DROP TABLE IF EXISTS Customers;
+
 CREATE TABLE Customers
 (
 	idCustomer		INTEGER			NOT NULL,
