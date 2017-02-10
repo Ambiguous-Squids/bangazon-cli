@@ -8,8 +8,8 @@ INSERT INTO Payments VALUES (null, 'Rob', 'Thomas', '56780000', '1995-03-01', 12
 INSERT INTO Payments VALUES (null, 'Barron', 'Awesome', '90001234', '1997-07-22', 123, 'Discover', 2);
 INSERT INTO Payments VALUES (null, 'Dude', 'Jam', '88881234', '2000-11-15', 123, 'Discover', 3);
 
-INSERT INTO Orders VALUES (null, 'True', 1);
-INSERT INTO Orders VALUES (null, 'True', 2);
+INSERT INTO Orders VALUES (null, 'False', 1);
+INSERT INTO Orders VALUES (null, 'False', 2);
 INSERT INTO Orders VALUES (null, 'False', 3);
 INSERT INTO Orders VALUES (null, 'False', 4);
 

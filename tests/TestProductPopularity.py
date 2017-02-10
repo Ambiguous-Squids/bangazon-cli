@@ -32,10 +32,12 @@ class TestProductPopularity(unittest.TestCase):
 
 
 	def test_product_popularity_returns_list_of_tuples(self):
-		order_history = self.product.get_popularity()
+		order_history = self.product.get_product_popularity_in_db()
 		self.assertIsInstance(order_history, list)
 		for order in order_history:
 			self.assertIsInstance(order, tuple)
+
+
 
 
 if __name__ == '__main__':
