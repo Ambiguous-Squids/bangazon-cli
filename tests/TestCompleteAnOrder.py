@@ -30,7 +30,7 @@ class TestCompleteAnOrder(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
-        cls.customer = Customer(
+        cls.nick = Customer(
             "Nick",
             "Chemsak",
             "111 Street Rd",
@@ -56,12 +56,17 @@ class TestCompleteAnOrder(unittest.TestCase):
 
     def test_there_is_a_customer(self):
         '''test that a customer exists'''
-        self.assertIsInstance(self.customer, Customer)
+        self.assertIsInstance(self.nick, Customer)
+        '''test that a customer can be registered to db'''
+        self.nick.register_customer_in_db(self.nick)
+        '''test that a customer is registered'''
+        self.assertTrue(self.nick.customer_is_registered(self.nick))
+
 
     def test_customer_is_active(self):
         '''test that a customer is active'''
-        self.customer.activate_customer(self.customer)
-        self.assertTrue(self.customer.user_is_active(self.customer))
+        self.nick.activate_customer(self.nick)
+        self.assertTrue(self.nick.user_is_active(self.nick))
 
     def test_payment_option_created(self):
         '''test that a payment option has been created'''
@@ -82,7 +87,7 @@ class TestCompleteAnOrder(unittest.TestCase):
 
     def test_active_to_inactive(self):
         '''test that a customer can be changed from active to inactive'''
-        self.assertFalse(self.customer.deactivate_customer(self.customer))
+        self.assertFalse(self.nick.deactivate_customer(self.nick))
 
 if __name__ == '__main__':
     unittest.main()
