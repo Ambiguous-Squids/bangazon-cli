@@ -65,8 +65,8 @@ class TestCompleteAnOrder(unittest.TestCase):
 
     def test_customer_is_active(self):
         '''test that a customer is active'''
-        self.nick.activate_customer(self.nick)
-        self.assertTrue(self.nick.user_is_active(self.nick))
+        self.nick.activate_customer()
+        self.assertTrue(self.nick.user_is_active())
 
 
     def test_payment_option_created(self):
@@ -96,7 +96,7 @@ class TestCompleteAnOrder(unittest.TestCase):
 
     def test_active_to_inactive(self):
         '''test that a customer can be changed from active to inactive'''
-        self.assertFalse(self.nick.deactivate_customer(self.nick))
+        self.assertFalse(self.nick.deactivate_customer())
 
 
 if __name__ == '__main__':

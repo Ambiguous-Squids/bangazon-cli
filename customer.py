@@ -19,7 +19,7 @@ class Customer():
 	'''
 
 	def __init__(self, first_name, last_name, address_1,
-				address_2, city, state, zip, phone_number, email):
+				address_2, city, state, zip, phone_number, email, is_active=False):
 
 		self.first_name = first_name
 		self.last_name = last_name
@@ -30,6 +30,7 @@ class Customer():
 		self.zip = zip
 		self.phone_number = phone_number
 		self.email = email
+		self.is_active = is_active
 
 	def get_full_name(self):
 	    return "{} {}".format(self.first_name, self.last_name)
@@ -61,14 +62,14 @@ class Customer():
 	def get_email(self):
 	    return str(self.email)
 
-	def user_is_active(self,customer):
-		return True
+	def user_is_active(self):
+		return self.is_active
 
-	def activate_customer(self,customer):
-		pass
+	def activate_customer(self):
+		self.is_active = True
 
-	def deactivate_customer(self,customer):
-		return False
+	def deactivate_customer(self):
+		self.is_active = False
 
 
 	def register_customer_in_db(self,customer):
@@ -80,14 +81,14 @@ class Customer():
 		            INSERT OR IGNORE INTO Customers VALUES (null, '{}', '{}', '{}', '{}',
 		            							'{}', '{}', '{}', '{}', '{}')
 		            """.format(
-		                        customer.get_first_name(), 
-		                        customer.get_last_name(), 
-		                        customer.get_address_1(), 
-		                        customer.get_address_2(), 
-		                        customer.get_city(), 
-		                        customer.get_state(), 
-		                        customer.get_zip(), 
-		                        customer.get_phone_number(), 
+		                        customer.get_first_name(),
+		                        customer.get_last_name(),
+		                        customer.get_address_1(),
+		                        customer.get_address_2(),
+		                        customer.get_city(),
+		                        customer.get_state(),
+		                        customer.get_zip(),
+		                        customer.get_phone_number(),
 		                        customer.get_email()))
 
 
@@ -97,7 +98,7 @@ class Customer():
 
 		    try:
 		        cursor.execute("""
-		            SELECT * FROM Customers 
+		            SELECT * FROM Customers
 		            WHERE email='{}'
 		        """.format(customer.get_email()))
 		    except sqlite3.OperationalError:
