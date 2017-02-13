@@ -9,14 +9,20 @@ class Order():
 
     Methods:
         __init__(self, customer)
-        get_customer(self)
         add_product(self, product)
+        add_payment_option(self, payment_option)
+        check_if_order_exists(self)
+        get_customer(self)
+        get_dir_fix(self)
+        get_order_id(self)
         get_products(self)
-        set_status(self, status)
+        save_to_db(self)
+        set_status(self)
         get_total(self)
+        set_status(self, status)
 
     Author:
-        @alirk
+        @alirk / @mccordgh
     """
 
     def __init__(self, customer, products, active, payment_option, total):
@@ -30,6 +36,48 @@ class Order():
 
     def add_product(self, product):
         self.products.append(product)
+
+        prod_id = product.get_product_id()
+        ord_id = self.get_order_id()
+
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+        INSERT INTO OrderItems
+        VALUES (null, "{}", "{}")
+        """.format(ord_id, prod_id)
+
+        try:
+            cursor.execute(sql_command)
+        except:
+            print("************ERROR ADDING TO MANY TO MANY DB**************")        
+
+        connection.commit()
+        connection.close()
+
+    def get_order_id(self):
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+        SELECT idOrder
+        FROM Orders
+        WHERE idCustomer=1
+        -- AND active="True"
+        """
+
+        try:
+            cursor.execute(sql_command)
+        except:
+            print("************ERROR GETTING ORDER ID**************")
+
+        order_id = cursor.fetchall()[0][0]
+        
+        connection.commit()
+        connection.close()
+
+        return order_id
 
     def get_products(self):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
@@ -50,18 +98,47 @@ class Order():
             for product in product_tupled:
                 returned_products.append(product)
 
+        connection.commit()
+        connection.close()
+
         return returned_products
 
     def set_status(self, status):
-        self.active = status
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+            UPDATE Orders
+            SET active='{}'
+            WHERE idOrder=1; 
+            """.format(status)
+
+        cursor.execute(sql_command)
+
+        connection.commit()
+        connection.close()
 
     def get_status(self):
-        return self.active
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+            SELECT active
+            FROM Orders
+            WHERE idOrder=1
+            """
+
+        cursor.execute(sql_command)
+        returned_fetch = cursor.fetchall()
+
+        connection.commit()
+        connection.close()
+
+        return returned_fetch[0][0]
 
     def get_total(self):
         order_total = 0
         for product in self.products:
-            print("{}: ${}".format(product.name, product.price))
             order_total += product.price
 
         return order_total
@@ -109,40 +186,3 @@ class Order():
             return '../'
         else:
             return ''
-
-    def is_active(self):        
-        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
-        cursor = connection.cursor()
-
-        sql_command = """
-        SELECT active 
-        FROM Orders 
-        WHERE idCustomer=1
-        """
-
-        try:
-            cursor.execute(sql_command)
-        except: 
-            return False
-
-        acct_info = cursor.fetchall()
-
-        connection.commit()
-        connection.close()
-
-        return True
-
-
-connection = sqlite3.connect('bangazon.db')
-cursor = connection.cursor()
-
-# sql_command = """
-#     SELECT name
-#     FROM Products
-#     WHERE idProduct = (
-#         SELECT idProduct
-#         FROM OrderItems
-#         WHERE idOrder=1
-#         )
-#     """
-
