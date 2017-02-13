@@ -49,7 +49,7 @@ class Product():
         return product_id
 
     def get_product_popularity_in_db(self):
-        with sqlite3.connect("../bangazon.db") as bangazon:
+        with sqlite3.connect("bangazon.db") as bangazon:
             cursor = bangazon.cursor()
 
             try:
@@ -66,6 +66,32 @@ class Product():
 
     def set_popularity(self, product_id, quantity):
         pass
+
+
+    def print_product_popularity(self):
+        products = self.get_product_popularity_in_db()
+
+        order_total = 0
+        customers_total = 0
+        revenue_total = 0
+
+        for product in products:
+            order_total += product[1]
+            customers_total += product[2]
+            revenue_total += product[3]
+
+        print("Product           Orders     Customers  Revenue")
+        print("*******************************************************")
+
+        for product in products:
+            name, order, customer, revenue = product
+            print("{0}      {1}     {2}     {3}".format(name, order, customer, revenue))
+
+        print("*******************************************************")
+        print("Totals:      {order_total}       {customers_total} ${revenue_total:.2f}".format(order_total=order_total, 
+                                                                                              customers_total=customers_total,
+                                                                                              revenue_total=revenue_total))
+
 
     def get_dir_fix(self):
         if os.path.basename(os.getcwd()) == 'tests':
