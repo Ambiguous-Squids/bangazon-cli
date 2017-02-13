@@ -71,6 +71,9 @@ class TestCompleteAnOrder(unittest.TestCase):
     def test_payment_option_created(self):
         '''test that a payment option has been created'''
         self.assertIsInstance(self.payment_option, PaymentOption)
+        self.payment_option.save_to_db(self.payment_option)
+        self.assertTrue(self.payment_option.check_if_acct_exists(self.payment_option))
+
 
     def test_a_product_is_in_order(self):
         '''test that a product is in the order'''
