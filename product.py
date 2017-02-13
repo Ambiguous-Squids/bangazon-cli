@@ -1,3 +1,4 @@
+import sqlite3
 """
 This module defines the class for Product creation.
 """
@@ -47,8 +48,21 @@ class Product():
 
         return product_id
 
-    def get_popularity(self):
-        return self.popularity
+    def get_product_popularity_in_db(self):
+        with sqlite3.connect("../bangazon.db") as bangazon:
+            cursor = bangazon.cursor()
+
+            try:
+                cursor.execute("""
+                    SELECT *
+                    FROM ProductPopularity
+                """)
+            except sqlite3.OperationalError:
+                print("Could not query ProductPopularity table")
+                return False
+
+            product_popularity = cursor.fetchall()
+            return product_popularity
 
     def set_popularity(self, product_id, quantity):
         pass

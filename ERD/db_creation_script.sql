@@ -9,6 +9,7 @@ DROP TABLE IF EXISTS Products;
 DROP TABLE IF EXISTS Orders;
 DROP TABLE IF EXISTS Payments;
 DROP TABLE IF EXISTS Customers;
+DROP VIEW IF EXISTS ProductPopularity;
 
 CREATE TABLE Customers
 (
@@ -68,3 +69,26 @@ CREATE TABLE OrderItems
 	FOREIGN KEY (idProduct) REFERENCES Products (idProduct)
 );
 
+/*
+	View will allow for dynamic queries within Python, using the syntax:
+	SELECT *
+	FROM ProductPopularity;
+
+	Logic as follows:
+		- Create an inner join on the Orders, OrderItems and Products table.
+		- Group by products in order to perform aggregate funtions
+		- Count the number of orders by product
+		- Count the distinct number of customers by product
+		- Sum total the price per product
+		- Order by product name
+
+	Author: @asimonia
+ */
+
+CREATE VIEW ProductPopularity AS SELECT p.name as Product, COUNT(o.idOrder) as Orders, COUNT (DISTINCT o.idCustomer) as Customers, SUM(p.price) as Revenue
+FROM Orders o, OrderItems oi, Products p
+WHERE o.idOrder = oi.idOrder AND
+		   oi.idProduct = p.idProduct AND
+		   o.active = 'False'
+GROUP BY Product
+ORDER by Product;
