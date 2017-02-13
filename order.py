@@ -25,10 +25,10 @@ class Order():
         @alirk / @mccordgh
     """
 
-    def __init__(self, customer, products, active, payment_option, total):
+    def __init__(self, customer, active, payment_option, total):
         self.customer = customer
         self.payment_option = payment_option
-        self.products = products
+        self.products = []
         self.active = active
 
     def get_customer(self):
@@ -137,11 +137,28 @@ class Order():
         return returned_fetch[0][0]
 
     def get_total(self):
-        order_total = 0
-        for product in self.products:
-            order_total += product.price
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
 
-        return order_total
+        sql_command = """
+            SELECT p.price
+            FROM Products p, OrderItems o
+            WHERE o.idOrder=1
+            AND p.idProduct=o.idProduct
+            """
+
+        cursor.execute(sql_command)
+        returned_fetch = cursor.fetchall()
+
+        product_total = 0
+        for prices_tupled in returned_fetch:
+            for price in prices_tupled:
+                product_total += price
+
+        connection.commit()
+        connection.close()
+
+        return float("{:0.2f}".format(product_total))
 
     def add_payment_option(self, payment_option):
         self.payment_option = payment_option
