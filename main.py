@@ -1,4 +1,4 @@
-def main():
+def mainMenu():
 
 	'''
 		Main command line user interface functionality
@@ -61,6 +61,7 @@ def main():
 
 def createCustomer():
 	print("createCustomer")
+	mainMenu()
 	# call functions here to run next process
 def chooseCustomer():
 	print("chooseCustomer")
@@ -80,4 +81,5 @@ def getProductPopularity():
 def quit():
 	exit
 
-main()
+if __name__ == '__main__':
+	mainMenu()
