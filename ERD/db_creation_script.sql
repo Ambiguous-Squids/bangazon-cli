@@ -45,8 +45,10 @@ CREATE TABLE Orders
 (
 	idOrder			INTEGER			NOT NULL,
 	active			BOOLEAN			NULL,
+	idPayment		INTEGER			NULL,
 	idCustomer 		INTEGER			NOT NULL,
 	PRIMARY KEY (idOrder)					,
+	FOREIGN KEY (idPayment) REFERENCES Payments (idPayment),
 	FOREIGN KEY (idCustomer) REFERENCES Customers (idCustomer)
 );
 
