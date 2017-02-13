@@ -42,7 +42,8 @@ class TestCompleteAnOrder(unittest.TestCase):
             "test@test.com"
             )
         cls.order = Order("Nick", "Basketball", True, 1)
-        cls.product = Product("Basketball", 5.00)
+        cls.product = Product("Basketball", 5.00, 1)
+        cls.zelda = Product('Legend of Zelda', 49.99, 100)
         cls.payment_option = PaymentOption(
             "Nick",
             "Chemsak",
@@ -80,19 +81,19 @@ class TestCompleteAnOrder(unittest.TestCase):
 
     def test_a_product_is_in_order(self):
         '''test that a product is in the order'''
-        self.order.add_product(self.product)
-        self.assertIn(self.product, self.order.get_products(self.product))
-
+        self.order.add_product(self.zelda)
+        self.assertIn(self.zelda.name, self.order.get_products())
 
     def test_no_products_in_order(self):
         '''test to see if there are no products in an order'''
-        self.assertNotIn(self.product, self.order2.get_products(self.product))
+        self.assertNotIn(self.product, self.order2.get_products())
 
 
     def test_payment_opt_add_to_order(self):
         '''test that a payment option has been added'''
         self.assertTrue(self.order.add_payment_option())
-
+        self.payment_option.save_to_db()
+        self.assertTrue(self.payment_option.check_if_acct_exists())
 
     def test_active_to_inactive(self):
         '''test that a customer can be changed from active to inactive'''
