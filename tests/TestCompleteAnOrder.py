@@ -68,11 +68,14 @@ class TestCompleteAnOrder(unittest.TestCase):
         self.nick.activate_customer(self.nick)
         self.assertTrue(self.nick.user_is_active(self.nick))
 
+
     def test_payment_option_created(self):
         '''test that a payment option has been created'''
         self.assertIsInstance(self.payment_option, PaymentOption)
-        self.payment_option.save_to_db(self.payment_option)
-        self.assertTrue(self.payment_option.check_if_acct_exists(self.payment_option))
+        '''test that a payment option can be saved to db'''
+        self.payment_option.save_to_db()
+        '''test that a payment option exists in db'''
+        self.assertTrue(self.payment_option.check_if_acct_exists())
 
 
     def test_a_product_is_in_order(self):
@@ -80,17 +83,21 @@ class TestCompleteAnOrder(unittest.TestCase):
         self.order.add_product(self.product)
         self.assertIn(self.product, self.order.get_products(self.product))
 
+
     def test_no_products_in_order(self):
         '''test to see if there are no products in an order'''
         self.assertNotIn(self.product, self.order2.get_products(self.product))
+
 
     def test_payment_opt_add_to_order(self):
         '''test that a payment option has been added'''
         self.assertTrue(self.order.add_payment_option())
 
+
     def test_active_to_inactive(self):
         '''test that a customer can be changed from active to inactive'''
         self.assertFalse(self.nick.deactivate_customer(self.nick))
+
 
 if __name__ == '__main__':
     unittest.main()
