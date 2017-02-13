@@ -1,5 +1,12 @@
 def main():
 
+	'''
+		Main command line user interface functionality
+
+		Vars:
+			choice - integer input for user choice
+	'''
+
 	print("\n""******************************************************* \n"
 		"** Welcome to Bangazon! Command Line Ordering System ** \n"
 		"******************************************************* \n")
