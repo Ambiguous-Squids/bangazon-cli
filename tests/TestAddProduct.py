@@ -39,9 +39,10 @@ class TestAddProduct(unittest.TestCase):
             "615-555-555",
             "bigal@al.com"
             )
-        cls.spiderman = Product('Spiderman', 5)
-        cls.basketball = Product('Basketball', 6)
-        cls.baseball = Product('Baseball', 7)
+        cls.zelda = Product('Legend of Zelda', 49.99, 100)
+        cls.spiderman = Product('Spiderman', 5, 40)
+        cls.basketball = Product('Basketball', 6, 33)
+        cls.baseball = Product('Baseball', 7, 59)
         cls.payment_option = PaymentOption(
             "Matthew",
             "McCord",
@@ -63,22 +64,27 @@ class TestAddProduct(unittest.TestCase):
     def tearDown(self):
         self.active_order.total = 0
 
-    def test_order_is_active(self):
-        self.assertTrue(self.active_order.is_active())
-
     def test_order_belongs_to_active_customer(self):
         self.assertIs(self.bob, self.active_order.get_customer())
 
-    def test_order_product_saved_to_db(self):
-        self.active_order.add_product(self.spiderman)
-        self.assertIn("Legend of Zelda", self.active_order.get_products())
+    def test_product_added_to_order_saved_to_many_to_many_in_db(self):
+        self.active_order.add_product(self.zelda)
+        self.assertIn(self.zelda.name, self.active_order.get_products())
 
     def test_price_of_product_added_is_added_to_order_total(self):
-        self.assertEqual(18, self.active_order.get_total())
+        self.assertEqual(62.99, self.active_order.get_total())
 
     def test_payment_option_saved_to_db(self):
         self.payment_option.save_to_db()
         self.assertTrue(self.payment_option.check_if_acct_exists())
+
+    def test_order_is_active(self):
+        self.assertEqual("True", self.active_order.get_status())
+
+    def test_can_set_order_status(self):
+        self.active_order.set_status("False")        
+        self.assertEqual("False", self.active_order.get_status())
+        self.active_order.set_status("True")        
 
 if __name__ == '__main__':
     unittest.main()
