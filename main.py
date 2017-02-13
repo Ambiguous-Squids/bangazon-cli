@@ -1,3 +1,6 @@
+import os
+from create_customer import *
+
 def mainMenu():
 
 	'''
@@ -6,6 +9,8 @@ def mainMenu():
 		Vars:
 			choice - integer input for user choice
 	'''
+
+	os.system("clear")
 
 	print("\n""******************************************************* \n"
 		"** Welcome to Bangazon! Command Line Ordering System ** \n"
@@ -59,9 +64,9 @@ def mainMenu():
 				print("Please enter a valid choice")
 	exit
 
-def createCustomer():
-	print("createCustomer")
-	mainMenu()
+# def createCustomer():
+# 	print("createCustomer")
+# 	mainMenu()
 	# call functions here to run next process
 def chooseCustomer():
 	print("chooseCustomer")
