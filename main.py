@@ -2,7 +2,7 @@ def main():
 
 	print("\n""******************************************************* \n"
 		"** Welcome to Bangazon! Command Line Ordering System ** \n"
-		"*******************************************************")
+		"******************************************************* \n")
 	print("1. Create a customer account \n")
 	print("2. Choose active customer \n")
 	print("3. Create a payment option \n")
@@ -54,16 +54,23 @@ def main():
 
 def createCustomer():
 	print("createCustomer")
+	# call functions here to run next process
 def chooseCustomer():
 	print("chooseCustomer")
+	# call functions here to run next process
 def createPayment():
 	print("createPayment")
+	# call functions here to run next process
 def addProduct():
 	print("addProduct")
+	# call functions here to run next process
 def completeOrder():
 	print("completeOrder")
+	# call functions here to run next process
 def getProductPopularity():
 	print("getProductPopularity")
+	# call functions here to run next process
 def quit():
 	exit
+
 main()
