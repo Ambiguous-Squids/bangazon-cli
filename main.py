@@ -9,7 +9,7 @@ def main():
 	print("4. Add product to shopping cart \n")
 	print("5. Complete an order \n")
 	print("6. See product popularity \n")
-	print("z. Leave Bangazon! \n")
+	print("7. Leave Bangazon! \n")
 
 
 	while True:
