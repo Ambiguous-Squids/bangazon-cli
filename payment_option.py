@@ -29,7 +29,7 @@ class PaymentOption:
         cursor = connection.cursor()
 
         sql_command = """
-        INSERT INTO Payments VALUES (null, "{}", "{}", "{}", "{}", "{}", "{}", 1)
+        INSERT OR IGNORE INTO Payments VALUES (null, "{}", "{}", "{}", "{}", "{}", "{}", 1)
         """.format(self.first_name, self.last_name, self.acct_number, self.exp_date, self.ccv, self.category)
 
         cursor.execute(sql_command)
