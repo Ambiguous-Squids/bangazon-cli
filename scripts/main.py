@@ -1,6 +1,7 @@
 import os
 import sys
 import create_customer
+import create_payment_option
 
 sys.path.append('../')
 
@@ -44,7 +45,7 @@ def mainMenu():
 			
 
 		if choice == 3:
-			pass
+			create_payment_option.createPaymentOption()
 			# createPayment()
 			
 

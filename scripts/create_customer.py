@@ -1,10 +1,10 @@
 import os
 import sys
-from main import mainMenu
+import main
+sys.path.append('../')
 from customer import Customer
 from superuser import Superuser
 
-sys.path.append('../')
 
 def createCustomer():
 
@@ -55,7 +55,7 @@ def createCustomer():
 							address_2, city, state, zip_code,
 							phone_number, email)
 	Superuser.register_customer(object,new_customer)
-	mainMenu()
+	main.mainMenu()
 
 
 
