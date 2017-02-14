@@ -92,7 +92,7 @@ class TestCompleteAnOrder(unittest.TestCase):
 
     def test_payment_opt_add_to_order(self):
         '''test that a payment option has been added'''
-        self.assertTrue(self.order.select_payment_option(self.payment_option))
+        self.assertTrue(self.order.get_payment_option(self.payment_option))
 
 
     def test_active_to_inactive(self):

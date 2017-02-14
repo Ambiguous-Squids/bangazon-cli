@@ -161,17 +161,40 @@ class Order():
         return float("{:0.2f}".format(product_total))
 
     def select_payment_option(self, payment_option):
-        # self.payment_option = payment_option
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
 
         sql_command = """
         UPDATE Orders
-        SET idPayment=1
-        WHERE idOrder=1
+        SET idPayment = 1
+        WHERE idOrder = 1
         """
 
-        cursor.execute(sql_command)
+        try:
+            cursor.execute(sql_command)
+        except:
+            return False
+
+        connection.commit()
+        connection.close()
+
+    def get_payment_option(self, payment_option):
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+        SELECT idPayment
+        FROM Orders
+        WHERE idOrder = 1
+        """
+
+        try:
+            cursor.execute(sql_command)
+        except:
+            return False
+
+        idpayment = cursor.fetchall()
+        return len(idpayment) == 1
 
         connection.commit()
         connection.close()
