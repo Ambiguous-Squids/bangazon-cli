@@ -2,6 +2,7 @@ import os
 import sys
 import create_customer
 import create_payment_option
+import show_productpopularity
 
 sys.path.append('../')
 
@@ -60,7 +61,7 @@ def mainMenu():
 			
 
 		if choice == 6:
-			pass
+			show_productpopularity.show_product_popularity()
 			# getProductPopularity()
 			
 
