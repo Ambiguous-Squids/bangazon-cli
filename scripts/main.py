@@ -1,12 +1,19 @@
 import os
 import sys
 import create_customer
+import activate_customer
 import create_payment_option
 import show_productpopularity
+import session_manager
+
 
 sys.path.append('../')
 
-def mainMenu():
+
+
+def mainMenu(active_customer):
+
+
 
 	'''
 		Main command line user interface functionality
@@ -18,6 +25,9 @@ def mainMenu():
 	'''
 
 	os.system("clear")
+	
+	print(active_customer.get_active_customer())
+	print(active_customer.get_active_customerId())
 
 	print("\n""******************************************************* \n"
 		"** Welcome to Bangazon! Command Line Ordering System ** \n"
@@ -29,53 +39,50 @@ def mainMenu():
 	print("5. Complete an order \n")
 	print("6. See product popularity \n")
 	print("7. Leave Bangazon! \n")
+ 
 
+	while True:
+		'''controls error'''
+		try:
+			choice = int(input())
 
+			if choice == 1:
+				create_customer.createCustomer(active_customer)
+				
 
-	'''controls error'''
-	try:
-		choice = int(input())
+			if choice == 2:
+				activate_customer.chooseCustomer(active_customer)
+				
 
-		if choice == 1:
-			create_customer.createCustomer()
-			
+			if choice == 3:
+				create_payment_option.createPaymentOption(active_customer)
+        
+        
+			if choice == 4:
+				pass
+				# addProduct()
+        
+			if choice == 5:
+				pass
+				# completeOrder()
+				
 
-		if choice == 2:
-			pass
-			# chooseCustomer()
-			
+			if choice == 6:
+        show_productpopularity.show_product_popularity(active_customer)
 
-		if choice == 3:
-			create_payment_option.createPaymentOption()
-			# createPayment()
-			
+				
 
-		if choice == 4:
-			pass
-			# addProduct()
-			
+			elif choice == 7:
+				exit()
+				
 
-		if choice == 5:
-			pass
-			# completeOrder()
-			
+			else:
+				print("Please enter a valid choice")
+		except ValueError:
+				print("Please enter a valid choice")
 
-		if choice == 6:
-			show_productpopularity.show_product_popularity()
-			# getProductPopularity()
-			
-
-		elif choice == 7:
-			exit()
-			
-
-		else:
-			print("Please enter a valid choice")
-	except ValueError:
-			print("Please enter a valid choice")
-
-
-
+	exit()
 
 if __name__ == '__main__':
-	mainMenu()
+	active_customer = session_manager.SessionManager()
+	mainMenu(active_customer)
