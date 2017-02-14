@@ -9,7 +9,7 @@ class Customer():
 		Methods:
 			__init__(self, first_name, last_name, address_1,
 							address_2, city, state, zip, phone_number, email)
-			user_is_active(self,customer)
+			customer_is_active(self,customer)
 			activate_customer(self,customer)
 			deactivate_customer(self,customer)
 

@@ -8,10 +8,10 @@ class Superuser():
             This class handles the superusers actions
 
         Methods:
-            register_customer(self,user)
-            user_is_registered(self,user)
-            activate_customer(self,user)
-            user_is_active(self,user)
+            register_customer(self,customer)
+            user_is_registered(self,customer)
+            activate_customer(self,customer)
+            user_is_active(self,customer)
             add_product_to_order(self,order,product)
 
         Author:
@@ -25,10 +25,10 @@ class Superuser():
     def customer_is_registered(self,customer):
         Customer.customer_is_registered(customer)
 
-    def activate_customer(self,user):
+    def activate_customer(self,customer):
         pass
 
-    def customer_is_active(self,user):
+    def customer_is_active(self,customer):
         return True
 
     def add_product_to_order(self, order, product):
