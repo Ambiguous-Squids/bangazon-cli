@@ -1,10 +1,17 @@
 import sqlite3
+import os
+import locale
+
 """
 This module defines the class for Product creation.
 """
 
-import sqlite3
-import os
+
+# Set US for currency formatting
+locale.setlocale( locale.LC_ALL, '' )
+
+
+
 
 class Product():
     """
@@ -49,7 +56,7 @@ class Product():
         return product_id
 
     def get_product_popularity_in_db(self):
-        with sqlite3.connect("bangazon.db") as bangazon:
+        with sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix())) as bangazon:
             cursor = bangazon.cursor()
 
             try:
@@ -64,16 +71,11 @@ class Product():
             product_popularity = cursor.fetchall()
             return product_popularity
 
-    def set_popularity(self, product_id, quantity):
-        pass
-
 
     def print_product_popularity(self):
         products = self.get_product_popularity_in_db()
 
-        order_total = 0
-        customers_total = 0
-        revenue_total = 0
+        order_total, customers_total, revenue_total = 0, 0, 0
 
         for product in products:
             order_total += product[1]
@@ -82,16 +84,12 @@ class Product():
 
         print("Product           Orders     Customers  Revenue")
         print("*******************************************************")
-
         for product in products:
             name, order, customer, revenue = product
-            print("{0}      {1}     {2}     {3}".format(name, order, customer, revenue))
+            print("{:<18.17}{:<11}{:<11}{:<15}".format(name, order, customer, locale.currency(revenue, grouping=True)))
 
         print("*******************************************************")
-        print("Totals:      {order_total}       {customers_total} ${revenue_total:.2f}".format(order_total=order_total, 
-                                                                                              customers_total=customers_total,
-                                                                                              revenue_total=revenue_total))
-
+        print("{:<18.17}{:<11}{:<11}{:<15}".format('Totals:', order_total, customers_total, locale.currency(revenue_total, grouping=True)))
 
     def get_dir_fix(self):
         if os.path.basename(os.getcwd()) == 'tests':
@@ -99,11 +97,4 @@ class Product():
         else:
             return ''
 
-    def say_hi(self):
-        return "HELLOOOOOOOOOOOOOO"
 
-# frisbee = Product("Frisbee", 49, 345)
-# print(frisbee)
-# print(frisbee.name)
-# print(frisbee.say_hi())
-# print(frisbee.get_product_id())
