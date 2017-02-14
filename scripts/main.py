@@ -1,5 +1,9 @@
 import os
+import sys
 import create_customer
+
+sys.path.append('../')
+
 def mainMenu():
 
 	'''

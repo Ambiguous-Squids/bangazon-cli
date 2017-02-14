@@ -3,7 +3,7 @@ sys.path.append('../')
 
 import unittest
 from customer import Customer
-# from superuser import Superuser
+from superuser import Superuser
 
 class TestCreateCustomer(unittest.TestCase):
 
@@ -25,16 +25,14 @@ class TestCreateCustomer(unittest.TestCase):
 		self.albert = Customer("Albert", "Einstein","123 Atom Way",
 							"Apt. B2", "Nashville", "TN",
 							"32233", "615-555-555", "bigal@al.com")
-		# self.superuser = Superuser()
+		self.superuser = Superuser()
 
 
 
 	def test_superuser_can_create_customer_account(self):
 
 		self.assertIsInstance(self.albert, Customer)
-		self.albert.register_customer_in_db(self.albert)
-
-		# self.superuser.register_user(self.albert)
+		self.superuser.register_customer(self.albert)
 		self.assertTrue(self.albert.customer_is_registered(self.albert))
 
 

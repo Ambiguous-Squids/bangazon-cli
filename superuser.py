@@ -19,11 +19,11 @@ class Superuser():
 
     '''
 
-    def register_customer(self):
-        Customer.register_customer_in_db(self)
+    def register_customer(self,customer):
+        Customer.register_customer_in_db(self,customer)
 
-    def user_is_registered(self,user):
-        return True
+    def customer_is_registered(self,customer):
+        Customer.customer_is_registered(customer)
 
     def activate_customer(self,user):
         pass

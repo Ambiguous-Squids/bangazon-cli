@@ -1,7 +1,10 @@
 import os
+import sys
 from main import mainMenu
 from customer import Customer
 from superuser import Superuser
+
+sys.path.append('../')
 
 def createCustomer():
 
@@ -10,7 +13,7 @@ def createCustomer():
 		provides inputs to enter customer information
 		passes inputs to superuser method 
 		to register customer in db
-		calls mainMenu() to return to main inteface
+		calls mainMenu() to return to main interface
 
 		@rtwhitfield84
 	'''
@@ -51,7 +54,7 @@ def createCustomer():
 	new_customer = Customer(first_name, last_name, address_1,
 							address_2, city, state, zip_code,
 							phone_number, email)
-	Superuser.register_customer(new_customer)
+	Superuser.register_customer(object,new_customer)
 	mainMenu()
 
 
