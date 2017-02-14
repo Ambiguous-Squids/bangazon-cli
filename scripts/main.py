@@ -3,7 +3,9 @@ import sys
 import create_customer
 import activate_customer
 import create_payment_option
+import show_productpopularity
 import session_manager
+
 
 sys.path.append('../')
 
@@ -54,22 +56,20 @@ def mainMenu(active_customer):
 
 			if choice == 3:
 				create_payment_option.createPaymentOption(active_customer)
-				# createPayment()
-				
-
+        
+        
 			if choice == 4:
 				pass
 				# addProduct()
-				
-
+        
 			if choice == 5:
 				pass
 				# completeOrder()
 				
 
 			if choice == 6:
-				pass
-				# getProductPopularity()
+				show_productpopularity.show_product_popularity(active_customer)
+
 				
 
 			elif choice == 7:

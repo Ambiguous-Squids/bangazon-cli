@@ -16,21 +16,22 @@ class PaymentOption:
         @mccordgh
     '''
 
-    def __init__(self, first_name, last_name, acct_number, exp_date, ccv, category):
+    def __init__(self, first_name, last_name, acct_number, exp_date, ccv, category, id_customer):
         self.first_name = first_name
         self.last_name = last_name
         self.acct_number = acct_number
         self.exp_date = exp_date
         self.ccv = ccv
         self.category = category
+        self.id_customer = id_customer
 
     def save_to_db(self):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
 
         sql_command = """
-        INSERT OR IGNORE INTO Payments VALUES (null, "{}", "{}", "{}", "{}", "{}", "{}", 1)
-        """.format(self.first_name, self.last_name, self.acct_number, self.exp_date, self.ccv, self.category)
+        INSERT OR IGNORE INTO Payments VALUES (null, "{}", "{}", "{}", "{}", "{}", "{}", "{}")
+        """.format(self.first_name, self.last_name, self.acct_number, self.exp_date, self.ccv, self.category, self.id_customer)
 
         cursor.execute(sql_command)
 
@@ -54,6 +55,9 @@ class PaymentOption:
 
     def get_category(self):
         return self.category
+
+    def get_id_customer(self):
+        return self.id_customer
 
     def check_if_acct_exists(self):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
