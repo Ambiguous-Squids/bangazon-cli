@@ -6,7 +6,7 @@ from payment_option import PaymentOption
 from superuser import Superuser
 
 
-def createPaymentOption():
+def createPaymentOption(active_customer):
 
     '''
         Payment option creation interface
@@ -56,8 +56,6 @@ def createPaymentOption():
         )
     
     Superuser.register_payment_option(object, new_payment_option)
-    main.mainMenu()
+    main.mainMenu(active_customer)
 
-if __name__ == '__main__':
-    createPaymentOption()
 
