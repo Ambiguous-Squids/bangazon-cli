@@ -6,7 +6,7 @@ from customer import Customer
 from superuser import Superuser
 
 
-def createCustomer():
+def createCustomer(active_customer):
 
 	'''
 		Customer creation interface
@@ -55,7 +55,7 @@ def createCustomer():
 							address_2, city, state, zip_code,
 							phone_number, email)
 	Superuser.register_customer(object,new_customer)
-	main.mainMenu()
+	main.mainMenu(active_customer)
 
 
 

@@ -45,7 +45,7 @@ def mainMenu(active_customer):
 			choice = int(input())
 
 			if choice == 1:
-				create_customer.createCustomer()
+				create_customer.createCustomer(active_customer)
 				
 
 			if choice == 2:
@@ -53,7 +53,7 @@ def mainMenu(active_customer):
 				
 
 			if choice == 3:
-				create_payment_option.createPaymentOption()
+				create_payment_option.createPaymentOption(active_customer)
 				# createPayment()
 				
 
