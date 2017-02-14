@@ -34,10 +34,10 @@ class Order():
     def get_customer(self):
         return self.customer
 
-    def add_product(self, product):
+    def add_product(self, product, id):
         self.products.append(product)
         prod_id = product.get_product_id()
-        ord_id = self.get_order_id()
+        ord_id = id
 
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()

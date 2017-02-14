@@ -5,21 +5,23 @@ sys.path.append('../')
 from superuser import Superuser
 from product import Product
 from order import Order
-from customer import Customer
-from payment_option import PaymentOption
+from complete_an_order import *
+from session_manager import SessionManager
 
-def addProduct():
+def startOrder(active_customer):
     superuser = Superuser()
     products = superuser.get_all_products()
 
     active_order = Order(
-        superuser.get_customer_by_id(2),
+        superuser.get_customer_by_id(active_customer.get_active_customerId()),
         True,
-        superuser.get_payment_option_by_id(1)        
+        superuser.get_payment_option_by_id(active_customer.get_active_paymentId())        
         )
     active_order.save_to_db()
-    active_order.get_last_order_id()
-    
+    active_customer.set_active_orderId(active_order.get_last_order_id())
+    addProduct(active_customer, superuser, products, active_order)
+
+def addProduct(active_customer, superuser, products, active_order):    
     print(
         "\n"
         "******************************* \n"
@@ -38,31 +40,23 @@ def addProduct():
         item = int(item)
         new_product = products[item-1]
         added_product = Product(new_product[1], new_product[2], new_product[3])
-        new_customer = Customer(
-            "Albert",
-            "Einstein",
-            "123 Atom Way",
-            "Apt. B2",
-            "Nashville",
-            "TN",
-            "32233",
-            "615-555-555",
-            "bigal@al.com"
-            )
-
-
-        superuser.add_product_to_order(added_product,active_order)
-        print('Product added ')
-        addProduct()
+        superuser.add_product_to_order(added_product,active_order,active_customer.get_active_orderId())
+        addProduct(active_customer, superuser, products, active_order)
     else:
         return
 
 def completeOrder():
     print('Do you want to complete order? y/n')
     answer = input(">")
+    if answer == 'y':
+        completeOrder(active_customer)
+    else:
+        mainMenu(active_customer)
 
 
+# active_customer = SessionManager()
+# active_customer.set_active_customerId(3)
+# active_customer.set_active_paymentId(3)
+# startOrder(active_customer)
 
-addProduct()
-
-completeOrder()
+# completeOrder()

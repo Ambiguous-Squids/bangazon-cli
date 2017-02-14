@@ -10,6 +10,7 @@ class SessionManager:
 		self.customerId = None
 		self.paymentId = None
 		self.active_customer = False
+		self.orderId = None
 
 	def set_active_customer(self):
 		self.active_customer = True
@@ -28,3 +29,9 @@ class SessionManager:
 
 	def get_active_paymentId(self):
 		return self.paymentId
+
+	def get_active_orderId(self):
+		return self.orderId
+
+	def set_active_orderId(self, orderId):
+		self.orderId = orderId

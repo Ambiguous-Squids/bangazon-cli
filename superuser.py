@@ -21,8 +21,8 @@ class Superuser():
 
     '''
 
-    def add_product_to_order(self, product, order):
-        order.add_product(product)
+    def add_product_to_order(self, product, order, id):
+        order.add_product(product, id)
 
     def get_all_products(self):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
