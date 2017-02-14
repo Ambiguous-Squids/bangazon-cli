@@ -1,6 +1,5 @@
 import os
-from create_customer import *
-
+import create_customer
 def mainMenu():
 
 	'''
@@ -8,6 +7,8 @@ def mainMenu():
 
 		Vars:
 			choice - integer input for user choice
+
+		@rtwhitfield84
 	'''
 
 	os.system("clear")
@@ -24,45 +25,49 @@ def mainMenu():
 	print("7. Leave Bangazon! \n")
 
 
-	while True:
-		'''enables continuous interface until user exits'''
-		try:
-			'''controls error'''
-			choice = int(input())
 
-			if choice == 1:
-				createCustomer()
-				break
+	'''controls error'''
+	try:
+		choice = int(input())
 
-			if choice == 2:
-				chooseCustomer()
-				break
+		if choice == 1:
+			create_customer.createCustomer()
+			
 
-			if choice == 3:
-				createPayment()
-				break
+		if choice == 2:
+			pass
+			# chooseCustomer()
+			
 
-			if choice == 4:
-				addProduct()
-				break
+		if choice == 3:
+			pass
+			# createPayment()
+			
 
-			if choice == 5:
-				completeOrder()
-				break
+		if choice == 4:
+			pass
+			# addProduct()
+			
 
-			if choice == 6:
-				getProductPopularity()
-				break
+		if choice == 5:
+			pass
+			# completeOrder()
+			
 
-			elif choice == 7:
-				exit()
-				break
+		if choice == 6:
+			pass
+			# getProductPopularity()
+			
 
-			else:
-				print("Please enter a valid choice")
-		except ValueError:
-				print("Please enter a valid choice")
-	exit
+		elif choice == 7:
+			exit()
+			
+
+		else:
+			print("Please enter a valid choice")
+	except ValueError:
+			print("Please enter a valid choice")
+
 
 
 
