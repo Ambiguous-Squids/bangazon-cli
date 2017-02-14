@@ -68,7 +68,7 @@ def mainMenu(active_customer):
 				
 
 			if choice == 6:
-        show_productpopularity.show_product_popularity(active_customer)
+				show_productpopularity.show_product_popularity(active_customer)
 
 				
 

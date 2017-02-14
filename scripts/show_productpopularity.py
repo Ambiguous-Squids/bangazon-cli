@@ -25,5 +25,3 @@ def show_product_popularity(active_customer):
     input("-> Press any key to return to main menu")
 
     main.mainMenu(active_customer)
-
-
