@@ -35,7 +35,7 @@ def createPaymentOption():
     last_name = str(input(">"))
 
     print("\nEnter account number")
-    acct_number = int(input(">"))
+    acct_number = str(input(">"))
 
     print("\nEnter expiration date")
     exp_date = str(input(">"))
