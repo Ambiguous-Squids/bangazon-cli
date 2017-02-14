@@ -59,6 +59,4 @@ def createCustomer():
 
 
 
-if __name__ == '__main__':
-	createCustomer()
 
