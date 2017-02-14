@@ -1,5 +1,6 @@
 import sqlite3
 from customer import Customer
+import os
 
 class Superuser():
 
@@ -18,6 +19,26 @@ class Superuser():
             @rtwhitfield84
 
     '''
+
+    def get_all_products(self):
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+        SELECT * 
+        FROM Products
+        """
+
+        try:
+            cursor.execute(sql_command)
+        except:
+            print("************ERROR GETTING ALL PRODUCTS**************")
+
+        return cursor.fetchall()
+
+        connection.commit()
+        connection.close()
+            
     def register_payment_option(self, payment_option):
         payment_option.save_to_db()
 
@@ -35,3 +56,9 @@ class Superuser():
 
     def add_product_to_order(self, order, product):
         pass
+
+    def get_dir_fix(self):
+        if os.path.basename(os.getcwd()) == 'tests' or os.path.basename(os.getcwd()) == 'scripts':
+            return '../'
+        else:
+            return ''
