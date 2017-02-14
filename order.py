@@ -51,7 +51,7 @@ class Order():
         try:
             cursor.execute(sql_command)
         except:
-            print("************ERROR ADDING TO MANY TO MANY DB**************")        
+            print("************ERROR ADDING TO MANY TO MANY DB**************")
 
         connection.commit()
         connection.close()
@@ -73,7 +73,7 @@ class Order():
             print("************ERROR GETTING ORDER ID**************")
 
         order_id = cursor.fetchall()[0][0]
-        
+
         connection.commit()
         connection.close()
 
@@ -110,7 +110,7 @@ class Order():
         sql_command = """
             UPDATE Orders
             SET active='{}'
-            WHERE idOrder=1; 
+            WHERE idOrder=1;
             """.format(status)
 
         cursor.execute(sql_command)
@@ -160,8 +160,21 @@ class Order():
 
         return float("{:0.2f}".format(product_total))
 
-    def add_payment_option(self, payment_option):
-        self.payment_option = payment_option
+    def select_payment_option(self, payment_option):
+        # self.payment_option = payment_option
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+        UPDATE Orders
+        SET idPayment=1
+        WHERE idOrder=1
+        """
+
+        cursor.execute(sql_command)
+
+        connection.commit()
+        connection.close()
 
     def save_to_db(self):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
@@ -176,19 +189,19 @@ class Order():
         connection.commit()
         connection.close()
 
-    def check_if_order_exists(self):        
+    def check_if_order_exists(self):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
 
         sql_command = """
-        SELECT idOrder 
-        FROM Orders 
+        SELECT idOrder
+        FROM Orders
         WHERE idCustomer=1
         """.format(self.acct_number)
 
         try:
             cursor.execute(sql_command)
-        except: 
+        except:
             return False
 
         acct_info = cursor.fetchall()
