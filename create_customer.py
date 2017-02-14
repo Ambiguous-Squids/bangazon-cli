@@ -1,4 +1,7 @@
 import os
+from main import mainMenu
+from customer import Customer
+from superuser import Superuser
 
 def createCustomer():
 
@@ -17,10 +20,10 @@ def createCustomer():
 			last_name = str(input(">"))
 
 			print("\nEnter address 1")
-			adress_1 = str(input(">"))
+			address_1 = str(input(">"))
 
 			print("\nEnter address 2 (optional)")
-			adress_2 = str(input(">"))
+			address_2 = str(input(">"))
 
 			print("\nEnter city")
 			city = str(input(">"))
@@ -29,14 +32,18 @@ def createCustomer():
 			state = str(input(">"))
 
 			print("\nEnter zip code")
-			zip = str(input(">"))
+			zip_code = str(input(">"))
 
 			print("\nEnter phone number")
-			adress_1 = str(input(">"))
+			phone_number = str(input(">"))
 
 			print("\nEnter email")
 			email = str(input(">"))
-			break
+			new_customer = Customer(first_name, last_name, address_1,
+									address_2, city, state, zip_code,
+									phone_number, email)
+			Superuser.register_customer(new_customer)
+			mainMenu()
 
 		except ValueError:
 			print("Please enter a valid input")

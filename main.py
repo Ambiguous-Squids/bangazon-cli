@@ -55,7 +55,7 @@ def mainMenu():
 				break
 
 			elif choice == 7:
-				quit()
+				exit()
 				break
 
 			else:
@@ -64,27 +64,7 @@ def mainMenu():
 				print("Please enter a valid choice")
 	exit
 
-# def createCustomer():
-# 	print("createCustomer")
-# 	mainMenu()
-	# call functions here to run next process
-def chooseCustomer():
-	print("chooseCustomer")
-	# call functions here to run next process
-def createPayment():
-	print("createPayment")
-	# call functions here to run next process
-def addProduct():
-	print("addProduct")
-	# call functions here to run next process
-def completeOrder():
-	print("completeOrder")
-	# call functions here to run next process
-def getProductPopularity():
-	print("getProductPopularity")
-	# call functions here to run next process
-def quit():
-	exit
+
 
 if __name__ == '__main__':
 	mainMenu()

@@ -71,24 +71,24 @@ class Customer():
 		return False
 
 
-	def register_customer_in_db(self,customer):
+	def register_customer_in_db(self):
 
-		with sqlite3.connect("../bangazon.db") as b:
+		with sqlite3.connect("bangazon.db") as b:
 		            cursor = b.cursor()
 
 		            cursor.execute("""
 		            INSERT OR IGNORE INTO Customers VALUES (null, '{}', '{}', '{}', '{}',
 		            							'{}', '{}', '{}', '{}', '{}')
 		            """.format(
-		                        customer.get_first_name(), 
-		                        customer.get_last_name(), 
-		                        customer.get_address_1(), 
-		                        customer.get_address_2(), 
-		                        customer.get_city(), 
-		                        customer.get_state(), 
-		                        customer.get_zip(), 
-		                        customer.get_phone_number(), 
-		                        customer.get_email()))
+		                        self.get_first_name(), 
+		                        self.get_last_name(), 
+		                        self.get_address_1(), 
+		                        self.get_address_2(), 
+		                        self.get_city(), 
+		                        self.get_state(), 
+		                        self.get_zip(), 
+		                        self.get_phone_number(), 
+		                        self.get_email()))
 
 
 	def customer_is_registered(self,customer):
