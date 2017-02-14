@@ -19,6 +19,7 @@ def createPaymentOption(active_customer):
     '''
 
     os.system("clear")
+    id_customer = active_customer.get_active_customerId()
 
     print(
         "\n"
@@ -52,7 +53,8 @@ def createPaymentOption(active_customer):
         acct_number,
         exp_date,
         ccv,
-        category
+        category,
+        id_customer
         )
     
     Superuser.register_payment_option(object, new_payment_option)
