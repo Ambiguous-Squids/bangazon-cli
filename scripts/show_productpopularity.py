@@ -5,7 +5,7 @@ sys.path.append('../')
 from product import Product
 
 
-def show_product_popularity():
+def show_product_popularity(active_customer):
 
     '''
         Show product popularity interface    
@@ -24,8 +24,6 @@ def show_product_popularity():
     print('\n')
     input("-> Press any key to return to main menu")
 
-    main.mainMenu()
+    main.mainMenu(active_customer)
 
-if __name__ == '__main__':
-    show_product_popularity()
 
