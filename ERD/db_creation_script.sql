@@ -91,4 +91,4 @@ WHERE o.idOrder = oi.idOrder AND
 		   oi.idProduct = p.idProduct AND
 		   o.active = 'False'
 GROUP BY Product
-ORDER by Product;
+ORDER BY Revenue DESC;
