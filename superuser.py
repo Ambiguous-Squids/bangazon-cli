@@ -28,7 +28,7 @@ class Superuser():
     def activate_customer(self,user):
         pass
 
-    def user_is_active(self,user):
+    def customer_is_active(self,user):
         return True
 
     def add_product_to_order(self, order, product):

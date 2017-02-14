@@ -61,7 +61,7 @@ class Customer():
 	def get_email(self):
 	    return str(self.email)
 
-	def user_is_active(self,customer):
+	def customer_is_active(self,customer):
 		return True
 
 	def activate_customer(self,customer):
