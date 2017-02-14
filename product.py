@@ -92,7 +92,7 @@ class Product():
         print("{:<18.17}{:<11}{:<11}{:<15}".format('Totals:', order_total, customers_total, locale.currency(revenue_total, grouping=True)))
 
     def get_dir_fix(self):
-        if os.path.basename(os.getcwd()) == 'tests':
+        if os.path.basename(os.getcwd()) == 'tests' or os.path.basename(os.getcwd()) == 'scripts':
             return '../'
         else:
             return ''

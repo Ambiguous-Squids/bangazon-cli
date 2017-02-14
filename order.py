@@ -25,7 +25,7 @@ class Order():
         @alirk / @mccordgh
     """
 
-    def __init__(self, customer, active, payment_option, total):
+    def __init__(self, customer, active, payment_option):
         self.customer = customer
         self.payment_option = payment_option
         self.products = []
@@ -36,7 +36,6 @@ class Order():
 
     def add_product(self, product):
         self.products.append(product)
-
         prod_id = product.get_product_id()
         ord_id = self.get_order_id()
 
@@ -234,8 +233,29 @@ class Order():
 
         return True
 
+    def get_last_order_id(self):
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+        SELECT idOrder MAX
+        FROM Orders 
+        """
+
+        try:
+            cursor.execute(sql_command)
+        except: 
+            print("ERROR GETTING MAX ORDERID")
+
+
+        last_order = cursor.fetchall()
+        return len(last_order)
+        connection.commit()
+        connection.close()
+
+
     def get_dir_fix(self):
-        if os.path.basename(os.getcwd()) == 'tests':
+        if os.path.basename(os.getcwd()) == 'tests' or os.path.basename(os.getcwd()) == 'scripts':
             return '../'
         else:
             return ''
