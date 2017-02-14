@@ -48,6 +48,7 @@ class Superuser():
     def customer_is_registered(self,customer):
         Customer.customer_is_registered(customer)
 
+
     def activate_customer(self,customer):
         pass
 
@@ -62,3 +63,15 @@ class Superuser():
             return '../'
         else:
             return ''
+    
+    def get_customers():
+        with sqlite3.connect("../bangazon.db") as b:
+            cursor = b.cursor()
+
+            try:
+                cursor.execute("SELECT c.idCustomer,c.first_name, c.last_name FROM Customers c")
+            except sqlite3.OperationalError:
+                return False
+            customer = cursor.fetchall()
+            return customer
+
