@@ -1,4 +1,5 @@
 import sqlite3
+from customer import Customer
 
 class Superuser():
 
@@ -7,10 +8,10 @@ class Superuser():
             This class handles the superusers actions
 
         Methods:
-            register_user(self,user)
-            user_is_registered(self,user)
-            activate_customer(self,user)
-            user_is_active(self,user)
+            register_customer(self,customer)
+            user_is_registered(self,customer)
+            activate_customer(self,customer)
+            user_is_active(self,customer)
             add_product_to_order(self,order,product)
 
         Author:
@@ -18,16 +19,16 @@ class Superuser():
 
     '''
 
-    def register_user(self,user):
+    def register_customer(self,customer):
+        Customer.register_customer_in_db(self,customer)
+
+    def customer_is_registered(self,customer):
+        Customer.customer_is_registered(customer)
+
+    def activate_customer(self,customer):
         pass
 
-    def user_is_registered(self,user):
-        return True
-
-    def activate_customer(self,user):
-        pass
-
-    def user_is_active(self,user):
+    def customer_is_active(self,customer):
         return True
 
     def add_product_to_order(self, order, product):
