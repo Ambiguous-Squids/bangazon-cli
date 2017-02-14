@@ -78,7 +78,7 @@ class PaymentOption:
         return True
 
     def get_dir_fix(self):
-        if os.path.basename(os.getcwd()) == 'tests':
+        if os.path.basename(os.getcwd()) == 'tests' or os.path.basename(os.getcwd()) == 'scripts':
             return '../'
         else:
             return ''

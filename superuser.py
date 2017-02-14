@@ -18,6 +18,8 @@ class Superuser():
             @rtwhitfield84
 
     '''
+    def register_payment_option(self, payment_option):
+        payment_option.save_to_db()
 
     def register_customer(self,customer):
         Customer.register_customer_in_db(self,customer)
