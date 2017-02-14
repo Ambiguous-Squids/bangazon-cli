@@ -35,7 +35,6 @@ def chooseCustomer(active_customer):
 	active_customer.set_active_customer()
 	active_customer.set_active_customerId(choice)
 	main.mainMenu(active_customer)
-	# print(SessionManagaer(True,choice,""))
 
 
 
