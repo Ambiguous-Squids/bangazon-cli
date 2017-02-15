@@ -28,7 +28,6 @@ def completeOrder(active_customer, order, customer_id):
     '''
 
     os.system("clear")
-    # payments = PaymentOption.get_category()
     payments = superuser.get_all_customer_payments(customer_id)
 
 
@@ -68,15 +67,3 @@ def completeOrder(active_customer, order, customer_id):
         main.mainMenu(active_customer)
 
     main.mainMenu(active_customer)
-
-# superuser = Superuser()
-# active_customer = SessionManager()
-# active_customer.set_active_customerId(2)
-# active_customer.set_active_orderId(superuser.get_last_order_id())
-# customer_id = active_customer.get_active_customerId()
-# active_order = Order(
-#         superuser.get_customer_by_id(customer_id),
-#         True,
-#         None
-#         )
-# completeOrder(active_customer, active_order, customer_id)

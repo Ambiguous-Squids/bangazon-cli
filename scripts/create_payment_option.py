@@ -59,5 +59,3 @@ def createPaymentOption(active_customer):
     
     Superuser.register_payment_option(object, new_payment_option)
     main.mainMenu(active_customer)
-
-

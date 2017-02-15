@@ -53,9 +53,3 @@ def addProduct(active_customer, superuser, products, active_order, products_adde
         else:
             input("Please add some products to your order first. Press enter key to return to main menu.")
             main.mainMenu(active_customer)
-
-# superuser = Superuser()
-# active_customer = SessionManager()
-# active_customer.set_active_customerId(3)
-# active_customer.set_active_paymentId(3)
-# startOrder(active_customer)

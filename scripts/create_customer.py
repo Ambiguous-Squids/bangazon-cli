@@ -56,7 +56,3 @@ def createCustomer(active_customer):
 							phone_number, email)
 	Superuser.register_customer(object,new_customer)
 	main.mainMenu(active_customer)
-
-
-
-
