@@ -5,6 +5,7 @@ import activate_customer
 import create_payment_option
 import show_productpopularity
 import session_manager
+import add_product
 
 
 sys.path.append('../')
@@ -59,18 +60,14 @@ def mainMenu(active_customer):
         
         
 			if choice == 4:
-				pass
-				# addProduct()
+				add_product.startOrder(active_customer)
         
 			if choice == 5:
-				pass
-				# completeOrder()
-				
+				if active_customer.get_active_orderId() == None:
+					print ("There is no active order")	
 
 			if choice == 6:
-				show_productpopularity.show_product_popularity(active_customer)
-
-				
+				show_productpopularity.show_product_popularity(active_customer)		
 
 			elif choice == 7:
 				exit()
