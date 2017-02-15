@@ -42,7 +42,7 @@ def mainMenu(active_customer):
 	while True:
 		'''controls error'''
 		try:
-			choice = int(input())
+			choice = int(input("> "))
 
 			if choice == 1:
 				create_customer.createCustomer(active_customer)
@@ -61,7 +61,7 @@ def mainMenu(active_customer):
         
 			if choice == 5:
 				if active_customer.get_active_orderId() == None:
-					print ("There is no active order")	
+					print("There is no active order")
 
 			if choice == 6:
 				show_productpopularity.show_product_popularity(active_customer)		

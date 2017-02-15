@@ -9,6 +9,7 @@ import complete_an_order
 from session_manager import SessionManager
 
 def startOrder(active_customer):
+    os.system("clear")
     superuser = Superuser()
     products = superuser.get_all_products()
     customer_id = active_customer.get_active_customerId()
@@ -23,7 +24,8 @@ def startOrder(active_customer):
     products_added = 0  
     addProduct(active_customer, superuser, products, active_order, products_added)
 
-def addProduct(active_customer, superuser, products, active_order, products_added):  
+def addProduct(active_customer, superuser, products, active_order, products_added):
+    os.system("clear")
     print(
         "\n"
         "******************************* \n"
@@ -51,9 +53,3 @@ def addProduct(active_customer, superuser, products, active_order, products_adde
         else:
             input("Please add some products to your order first. Press enter key to return to main menu.")
             main.mainMenu(active_customer)
-
-# superuser = Superuser()
-# active_customer = SessionManager()
-# active_customer.set_active_customerId(3)
-# active_customer.set_active_paymentId(3)
-# startOrder(active_customer)
