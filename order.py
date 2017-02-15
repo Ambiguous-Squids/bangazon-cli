@@ -78,6 +78,21 @@ class Order():
 
         return order_id
 
+    def set_payment_type_id(self, id, order_id):
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+            UPDATE Orders
+            SET idPayment='{}'
+            WHERE idOrder={};
+            """.format(id, order_id)
+
+        cursor.execute(sql_command)
+
+        connection.commit()
+        connection.close()
+
     def get_products(self):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
@@ -102,15 +117,15 @@ class Order():
 
         return returned_products
 
-    def set_status(self, status):
+    def set_status(self, status, order_id):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
 
         sql_command = """
             UPDATE Orders
             SET active='{}'
-            WHERE idOrder=1;
-            """.format(status)
+            WHERE idOrder={};
+            """.format(status, order_id)
 
         cursor.execute(sql_command)
 
@@ -135,16 +150,16 @@ class Order():
 
         return returned_fetch[0][0]
 
-    def get_total(self):
+    def get_total(self, id):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
 
         sql_command = """
             SELECT p.price
             FROM Products p, OrderItems o
-            WHERE o.idOrder=1
+            WHERE o.idOrder={}
             AND p.idProduct=o.idProduct
-            """
+            """.format(id)
 
         cursor.execute(sql_command)
         returned_fetch = cursor.fetchall()
@@ -177,34 +192,13 @@ class Order():
         connection.commit()
         connection.close()
 
-    def get_payment_option(self, payment_option):
+    def save_to_db(self, payment_id, customer_id):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
 
         sql_command = """
-        SELECT idPayment
-        FROM Orders
-        WHERE idOrder = 1
-        """
-
-        try:
-            cursor.execute(sql_command)
-        except:
-            return False
-
-        idpayment = cursor.fetchall()
-        return len(idpayment) == 1
-
-        connection.commit()
-        connection.close()
-
-    def save_to_db(self):
-        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
-        cursor = connection.cursor()
-
-        sql_command = """
-        INSERT OR IGNORE INTO Orders VALUES (null, "{}", 1)
-        """.format(self.active)
+        INSERT OR IGNORE INTO Orders VALUES (null, "{}", "{}", "{}")
+        """.format(self.active, payment_id, customer_id)
 
         cursor.execute(sql_command)
 
@@ -232,27 +226,6 @@ class Order():
         connection.close()
 
         return True
-
-    def get_last_order_id(self):
-        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
-        cursor = connection.cursor()
-
-        sql_command = """
-        SELECT idOrder MAX
-        FROM Orders 
-        """
-
-        try:
-            cursor.execute(sql_command)
-        except: 
-            print("ERROR GETTING MAX ORDERID")
-
-
-        last_order = cursor.fetchall()
-        return len(last_order)
-        connection.commit()
-        connection.close()
-
 
     def get_dir_fix(self):
         if os.path.basename(os.getcwd()) == 'tests' or os.path.basename(os.getcwd()) == 'scripts':

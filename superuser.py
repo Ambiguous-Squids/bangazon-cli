@@ -24,6 +24,26 @@ class Superuser():
     def add_product_to_order(self, product, order, id):
         order.add_product(product, id)
 
+    def get_last_order_id(self):
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+        SELECT idOrder MAX
+        FROM Orders 
+        """
+
+        try:
+            cursor.execute(sql_command)
+        except: 
+            print("ERROR GETTING MAX ORDERID")
+
+
+        last_order = cursor.fetchall()
+        return len(last_order)
+        connection.commit()
+        connection.close()
+
     def get_all_products(self):
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
@@ -51,7 +71,6 @@ class Superuser():
 
     def customer_is_registered(self,customer):
         Customer.customer_is_registered(customer)
-
 
     def activate_customer(self,customer):
         pass
@@ -81,7 +100,31 @@ class Superuser():
         connection.commit()
         connection.close()
 
-    def get_payment_option_by_id(self,id):
+    def get_all_customer_payments(self, customer_id):
+        connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
+        cursor = connection.cursor()
+
+        sql_command = """
+        SELECT * 
+        FROM Payments
+        WHERE idCustomer={}
+        """.format(customer_id)
+
+        try:
+            cursor.execute(sql_command)
+        except:
+            print("************ERROR GETTING ALL PRODUCTS**************")
+
+        results = cursor.fetchall()
+
+        connection.commit()
+        connection.close()
+            
+        return results
+
+    def get_payment_option_by_id(self,id, customer_id):
+        print("(*@&#$*(&@#*$&(*@#&$*(@&#*($&@#(*$&(@*#&$*")
+        print(self, id, customer_id)
         connection = sqlite3.connect('{}bangazon.db'.format(self.get_dir_fix()))
         cursor = connection.cursor()
 
@@ -97,7 +140,7 @@ class Superuser():
             print("************ERROR GETTING PAYMENT OPTION**************")
 
         results = cursor.fetchall()[0]
-        new_payment = PaymentOption(object,results[1],results[2],results[3],results[4],results[5])
+        new_payment = PaymentOption(object,results[1],results[2],results[3],results[4],results[5], customer_id)
         return new_payment
 
         connection.commit()
