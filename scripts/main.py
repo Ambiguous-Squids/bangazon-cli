@@ -26,9 +26,6 @@ def mainMenu(active_customer):
 	'''
 
 	os.system("clear")
-	
-	print(active_customer.get_active_customer())
-	print(active_customer.get_active_customerId())
 
 	print("\n""******************************************************* \n"
 		"** Welcome to Bangazon! Command Line Ordering System ** \n"
