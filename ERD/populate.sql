@@ -1,7 +1,7 @@
-INSERT INTO Customers VALUES (null, 'Bob', 'Jam', '123 Maple', null, 'Germantown', 'TN', '37214', '901-754-2900', 'a@a');
-INSERT INTO Customers VALUES (null, 'Jack', 'Tables', '100 Great St', null, 'Germantown', 'TN', '37211', '901-751-2900', 'b@b');
-INSERT INTO Customers VALUES (null, 'Terance', 'Goodwin', '900 Cool Cv', null, 'Memphis', 'TN', '37210', '901-754-2900', 'c@c');
-INSERT INTO Customers VALUES (null, 'Rob', 'Awesome', '555 Nice St', null, 'San Antonio', 'TX', '78212', '210-244-2900', 'd@d');
+INSERT INTO Customers VALUES (null, 'Bob', 'Jam', 'pass', '123 Maple', null, 'Germantown', 'TN', '37214', '901-754-2900', 'a@a');
+INSERT INTO Customers VALUES (null, 'Jack', 'Tables', 'pass', '100 Great St', null, 'Germantown', 'TN', '37211', '901-751-2900', 'b@b');
+INSERT INTO Customers VALUES (null, 'Terance', 'Goodwin', 'pass', '900 Cool Cv', null, 'Memphis', 'TN', '37210', '901-754-2900', 'c@c');
+INSERT INTO Customers VALUES (null, 'Rob', 'Awesome', 'pass', '555 Nice St', null, 'San Antonio', 'TX', '78212', '210-244-2900', 'd@d');
 
 INSERT INTO Payments VALUES (null, 'Bob', 'Jam', '56781234', '1990-01-02', 123, 'VISA', 1);
 INSERT INTO Payments VALUES (null, 'Rob', 'Thomas', '56780000', '1995-03-01', 123, 'MasterCard', 1);

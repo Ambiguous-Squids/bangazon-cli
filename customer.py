@@ -1,4 +1,5 @@
 import sqlite3
+from password import Password
 
 class Customer():
 
@@ -7,7 +8,7 @@ class Customer():
 			This class handles the creation of a Customer
 
 		Methods:
-			__init__(self, first_name, last_name, address_1,
+			__init__(self, first_name, last_name, password, address_1,
 							address_2, city, state, zip, phone_number, email)
 			customer_is_active(self,customer)
 			activate_customer(self,customer)
@@ -18,11 +19,12 @@ class Customer():
 
 	'''
 
-	def __init__(self, first_name, last_name, address_1,
+	def __init__(self, first_name, last_name, password, address_1,
 				address_2, city, state, zip, phone_number, email, is_active=False):
 
 		self.first_name = first_name
 		self.last_name = last_name
+		self.password = Password(password)
 		self.address_1 = address_1
 		self.address_2 = address_2
 		self.city = city
@@ -62,6 +64,9 @@ class Customer():
 	def get_email(self):
 	    return str(self.email)
 
+	def get_password(self):
+		return str(self.password.get_hashed_password())
+
 	def user_is_active(self):
 		return self.is_active
 
@@ -81,11 +86,12 @@ class Customer():
 		            cursor = b.cursor()
 
 		            cursor.execute("""
-		            INSERT OR IGNORE INTO Customers VALUES (null, '{}', '{}', '{}', '{}',
+		            INSERT OR IGNORE INTO Customers VALUES (null, '{}', '{}', '{}', '{}', '{}',
 		            							'{}', '{}', '{}', '{}', '{}')
 		            """.format(
 		                        customer.get_first_name(),
 		                        customer.get_last_name(),
+		                        customer.get_password(),
 		                        customer.get_address_1(),
 		                        customer.get_address_2(),
 		                        customer.get_city(),

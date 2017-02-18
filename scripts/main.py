@@ -31,7 +31,7 @@ def mainMenu(active_customer):
 		"** Welcome to Bangazon! Command Line Ordering System ** \n"
 		"******************************************************* \n")
 	print("1. Create a customer account \n")
-	print("2. Choose active customer \n")
+	print("2. Login into my account \n")
 	print("3. Create a payment option \n")
 	print("4. Add product to shopping cart \n")
 	print("5. Complete an order \n")

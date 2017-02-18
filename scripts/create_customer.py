@@ -4,6 +4,7 @@ import main
 sys.path.append('../')
 from customer import Customer
 from superuser import Superuser
+from getpass import getpass
 
 
 def createCustomer(active_customer):
@@ -16,6 +17,7 @@ def createCustomer(active_customer):
 		calls mainMenu() to return to main interface
 
 		@rtwhitfield84
+		@asimonia
 	'''
 
 	os.system("clear")
@@ -23,6 +25,22 @@ def createCustomer(active_customer):
 	print("\n""******************************* \n"
 		"** Create a Customer Account ** \n"
 		"******************************* \n")
+
+	password = ''
+
+	# Mask characters for password input
+	# Compare against re-entry
+
+	while True:
+		password_a = getpass()
+		password_b = getpass(prompt="Re-enter password: ")
+
+		if password_a == password_b:
+			password = str(password_a)
+			break
+		else:
+			print("Passwords must match!\n")
+
 
 
 	print("\nEnter customer first name")
@@ -51,7 +69,7 @@ def createCustomer(active_customer):
 
 	print("\nEnter email")
 	email = str(input(">"))
-	new_customer = Customer(first_name, last_name, address_1,
+	new_customer = Customer(first_name, last_name, password, address_1,
 							address_2, city, state, zip_code,
 							phone_number, email)
 	Superuser.register_customer(object,new_customer)
