@@ -16,7 +16,7 @@ CREATE TABLE Customers
 	idCustomer		INTEGER			NOT NULL,
 	first_name		VARCHAR(45)		NOT NULL,
 	last_name		VARCHAR(45)		NOT NULL,
-	password		VARCHAR(45)		NOT NULL,
+	password		VARCHAR(100)	NOT NULL,
 	address_1		VARCHAR(45)		NOT NULL,
 	address_2		VARCHAR(45)			NULL,
 	city			VARCHAR(45)		NOT NULL,
