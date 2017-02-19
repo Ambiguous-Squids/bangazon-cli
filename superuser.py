@@ -94,7 +94,7 @@ class Superuser():
             print("************ERROR GETTING CUSTOMER**************")
 
         results = cursor.fetchall()[0]
-        new_customer = Customer(object,results[1],results[2],results[3],results[4],results[5],results[6],results[7],results[8])
+        new_customer = Customer(object,results[1],results[2],results[3],results[4],results[5],results[6],results[7],results[8], results[9])
         return new_customer
 
         connection.commit()
