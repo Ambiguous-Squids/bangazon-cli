@@ -157,7 +157,7 @@ class Superuser():
             cursor = b.cursor()
 
             try:
-                cursor.execute("SELECT c.idCustomer,c.first_name, c.last_name FROM Customers c")
+                cursor.execute("SELECT c.idCustomer,c.first_name, c.last_name, c.password FROM Customers c")
             except sqlite3.OperationalError:
                 return False
             customer = cursor.fetchall()
