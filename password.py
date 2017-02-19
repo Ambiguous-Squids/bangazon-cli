@@ -13,7 +13,8 @@ class Password:
 			This class handles encryption process of the password
 
 		Methods:
-
+			__init__(self, password)
+			get_hashed_password(self)
 
 		Author:
 			@asimonia
@@ -32,7 +33,7 @@ class Password:
 		self.hashed = bcrypt.hashpw(self.password, bcrypt.gensalt())
 
 	def get_hashed_password(self):
-		return self.hashed
+		return self.hashed.decode('utf-8')
 
 
 

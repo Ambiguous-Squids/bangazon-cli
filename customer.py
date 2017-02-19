@@ -22,55 +22,67 @@ class Customer():
 	def __init__(self, first_name, last_name, password, address_1,
 				address_2, city, state, zip, phone_number, email, is_active=False):
 
-		self.first_name = first_name
-		self.last_name = last_name
-		self.password = Password(password)
-		self.address_1 = address_1
-		self.address_2 = address_2
-		self.city = city
-		self.state = state
-		self.zip = zip
-		self.phone_number = phone_number
-		self.email = email
-		self.is_active = is_active
+		self.__first_name = first_name
+		self.__last_name = last_name
+		self.__password = Password(password)
+		self.__address_1 = address_1
+		self.__address_2 = address_2
+		self.__city = city
+		self.__state = state
+		self.__zip = zip
+		self.__phone_number = phone_number
+		self.__email = email
+		self.__is_active = is_active
 
-	def get_full_name(self):
-	    return "{} {}".format(self.first_name, self.last_name)
+	@property
+	def full_name(self):
+		return "{} {}".format(self.__first_name, self.__last_name)
 
-	def get_first_name(self):
-	    return str(self.first_name)
+	@property
+	def first_name(self):
+		return self.__first_name
 
-	def get_last_name(self):
-	    return str(self.last_name)
+	@property
+	def last_name(self):
+		return self.__last_name
 
-	def get_address_1(self):
-	    return str(self.address_1)
+	@property
+	def address_1(self):
+		return self.__address_1
 
-	def get_address_2(self):
-	    return str(self.address_2)
+	@property
+	def address_2(self):
+		return self.__address_2
+	@property
+	def city(self):
+		return self.__city
 
-	def get_city(self):
-		return str(self.city)
+	@property
+	def state(self):
+		return self.__state
 
-	def get_state(self):
-		return str(self.state)
+	@property
+	def zip(self):
+		return self.__zip
 
-	def get_zip(self):
-		return str(self.zip)
+	@property
+	def phone_number(self):
+		return self.__phone_number
 
-	def get_phone_number(self):
-		return str(self.phone_number)
+	@property
+	def email(self):
+		return self.__email
 
-	def get_email(self):
-	    return str(self.email)
+	@property
+	def password(self):
+		return self.__password.get_hashed_password()
 
-	def get_password(self):
-		return str(self.password.get_hashed_password())
+	@property
+	def is_active(self):
+		return self.__is_active
 
-	def user_is_active(self):
-		return self.is_active
-
-	def customer_is_active(self,customer):
+	@property
+	def customer_is_active(self, customer):
 		return True
 
 	def activate_customer(self):
@@ -80,38 +92,40 @@ class Customer():
 		self.is_active = False
 
 
-	def register_customer_in_db(self,customer):
+	def register_customer_in_db(self, customer):
 
 		with sqlite3.connect("../bangazon.db") as b:
-		            cursor = b.cursor()
+					cursor = b.cursor()
 
-		            cursor.execute("""
-		            INSERT OR IGNORE INTO Customers VALUES (null, '{}', '{}', '{}', '{}', '{}',
-		            							'{}', '{}', '{}', '{}', '{}')
-		            """.format(
-		                        customer.get_first_name(),
-		                        customer.get_last_name(),
-		                        customer.get_password(),
-		                        customer.get_address_1(),
-		                        customer.get_address_2(),
-		                        customer.get_city(),
-		                        customer.get_state(),
-		                        customer.get_zip(),
-		                        customer.get_phone_number(),
-		                        customer.get_email()))
+					cursor.execute("""
+					INSERT OR IGNORE INTO Customers VALUES (null, '{}', '{}', '{}', '{}', '{}',
+												'{}', '{}', '{}', '{}', '{}')
+					""".format(
+								customer.first_name,
+								customer.last_name,
+								customer.password,
+								customer.address_1,
+								customer.address_2,
+								customer.city,
+								customer.state,
+								customer.zip,
+								customer.phone_number,
+								customer.email
+								)
+					)
 
 
 	def customer_is_registered(self,customer):
 		with sqlite3.connect("../bangazon.db") as b:
-		    cursor = b.cursor()
+			cursor = b.cursor()
 
-		    try:
-		        cursor.execute("""
-		            SELECT * FROM Customers
-		            WHERE email='{}'
-		        """.format(customer.get_email()))
-		    except sqlite3.OperationalError:
-		        return False
+			try:
+				cursor.execute("""
+					SELECT * FROM Customers
+					WHERE email='{}'
+				""".format(customer.get_email()))
+			except sqlite3.OperationalError:
+				return False
 
-		    customer = cursor.fetchall()
-		    return len(customer) == 1
+			customer = cursor.fetchall()
+			return len(customer) == 1
