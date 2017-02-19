@@ -63,22 +63,25 @@ def chooseCustomer(active_customer):
 
 		if password_a == password_b:
 			entered_password = str(password_a)
-			break
+			if Password.check_hashed_password(entered_password, password):
+				print("\nWelcome back {} {}!".format(first_name, last_name))
+				print('\n')
+				input("-> Press any key to return to main menu")
+				active_customer.set_active_customer()
+				active_customer.set_active_customerId(choice)
+				main.mainMenu(active_customer)
+			else:
+				print("Ah, ah, ah, you didn't say the magic word!")
+				print('\n')
+				input("-> Press any key to return to main menu")
+				continue			
 		else:
 			print("Passwords must match!\n")
 
-	# Check to see if user entered password matches stored in database
-	# Hashed password in database
-	if Password.check_hashed_password(entered_password, password):
-		print("\nWelcome back {} {}!".format(first_name, last_name))
-		print('\n')
-		input("-> Press any key to return to main menu")
-		active_customer.set_active_customer()
-		active_customer.set_active_customerId(choice)
-		main.mainMenu(active_customer)
-	else:
-		print("Ah, ah, ah, you didn't say the magic word!")
-		exit()
+		# Check to see if user entered password matches stored in database
+		# Hashed password in database
+	
+
 
 
 

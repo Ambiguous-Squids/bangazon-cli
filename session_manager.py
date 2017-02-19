@@ -15,7 +15,13 @@ class SessionManager:
 	def set_active_customer(self):
 		self.active_customer = True
 
-	def get_active_customer(self):
+	def deactivate_customer(self):
+		self.customerId = None
+		self.paymentId = None
+		self.active_customer = False
+		self.orderId = None
+
+	def active_customer(self):
 		return self.active_customer
 
 	def set_active_customerId(self, customerId):
