@@ -9,6 +9,7 @@ from getpass import getpass
 
 
 
+
 def chooseCustomer(active_customer):
 
 	'''
@@ -22,18 +23,39 @@ def chooseCustomer(active_customer):
 
 	os.system("clear")
 
+	# Fetch the customer id, first name, last name, password
+	# assign it to customers as a list of tuples
+	selected = False
 	customers = Superuser.get_customers()
+	password = ''
+	choice = 0
 
 
 	print("\n""*************************** \n"
 		"** Login to your account ** \n"
 		"*************************** \n")
 
-	first_name = input("First name: ")
-	last_name = input("Last name: ")
+	# Select the first and last name for the customer
+	# Test to see if it in customers
+	
+	while not selected:
 
-	password = ''
+		first_name = input("First name: ")
+		last_name = input("Last name: ")
 
+		for customer in customers:
+			if customer[1] == first_name and customer[2] == last_name:
+				# Once customer is selected, get password
+				print("Welcome {} {}!\n".format(first_name, last_name))
+				choice = customer[0]
+				password = customer[3]
+				selected = True
+
+		if not selected:
+			print("Please enter a valid customer.\n")
+
+	print("choice " + str(choice))
+	print("password " + str(password))
 	# Mask characters for password input
 	# Compare against re-entry
 
@@ -46,12 +68,6 @@ def chooseCustomer(active_customer):
 			break
 		else:
 			print("Passwords must match!\n")
-
-	for x in customers:
-		print(x[0],":",x[1],x[2])
-
-	choice = int(input("> "))
-	print(choice)
 
 	print('\n')
 	input("-> Press any key to return to main menu")
