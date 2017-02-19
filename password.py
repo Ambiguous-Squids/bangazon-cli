@@ -37,7 +37,7 @@ class Password:
 		return self.hashed.decode('utf-8')
 
 	@staticmethod
-	def check_hashed_password(self, password, hashed):
+	def check_hashed_password(password, hashed):
 		"""Compares the given password to the hashed password
 		Return True if matches, else False"""
 

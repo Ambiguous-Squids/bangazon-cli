@@ -1,7 +1,7 @@
 import sqlite3
 from password import Password
 
-class Customer():
+class Customer:
 
 	'''
 		Purpose:

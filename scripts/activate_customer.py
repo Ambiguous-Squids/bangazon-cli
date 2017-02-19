@@ -6,6 +6,7 @@ from customer import Customer
 from superuser import Superuser
 from session_manager import SessionManager
 from getpass import getpass
+from password import Password
 
 
 
@@ -39,23 +40,20 @@ def chooseCustomer(active_customer):
 	# Test to see if it in customers
 	
 	while not selected:
-
 		first_name = input("First name: ")
 		last_name = input("Last name: ")
 
 		for customer in customers:
 			if customer[1] == first_name and customer[2] == last_name:
 				# Once customer is selected, get password
-				print("Welcome {} {}!\n".format(first_name, last_name))
 				choice = customer[0]
 				password = customer[3]
 				selected = True
+				print("Howdy, %s!\n" % (first_name))
 
 		if not selected:
-			print("Please enter a valid customer.\n")
+			print("Customer does not exist!\n")
 
-	print("choice " + str(choice))
-	print("password " + str(password))
 	# Mask characters for password input
 	# Compare against re-entry
 
@@ -64,14 +62,23 @@ def chooseCustomer(active_customer):
 		password_b = getpass(prompt="Re-enter password: ")
 
 		if password_a == password_b:
-			password = str(password_a)
+			entered_password = str(password_a)
 			break
 		else:
 			print("Passwords must match!\n")
 
-	print('\n')
-	input("-> Press any key to return to main menu")
+	# Check to see if user entered password matches stored in database
+	# Hashed password in database
+	if Password.check_hashed_password(entered_password, password):
+		print("\nWelcome back {} {}!".format(first_name, last_name))
+		print('\n')
+		input("-> Press any key to return to main menu")
+		active_customer.set_active_customer()
+		active_customer.set_active_customerId(choice)
+		main.mainMenu(active_customer)
+	else:
+		print("Ah, ah, ah, you didn't say the magic word!")
+		exit()
 
-	active_customer.set_active_customer()
-	active_customer.set_active_customerId(choice)
-	main.mainMenu(active_customer)
+
+
